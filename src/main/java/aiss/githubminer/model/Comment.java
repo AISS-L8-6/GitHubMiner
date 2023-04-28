@@ -1,5 +1,5 @@
 
-package aiss.githubminer.model.comment;
+package aiss.githubminer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
