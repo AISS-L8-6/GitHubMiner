@@ -1,17 +1,15 @@
 package aiss.githubminer.model;
 
 import java.util.List;
-import javax.annotation.Generated;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Issues {
+public class Issue {
 
     @JsonProperty("id")
     private String id;
@@ -123,7 +121,7 @@ public class Issues {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Issues.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Issue.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("id");
         sb.append('=');
         sb.append(((this.id == null)?"<null>":this.id));
