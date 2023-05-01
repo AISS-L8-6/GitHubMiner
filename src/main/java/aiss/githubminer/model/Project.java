@@ -4,7 +4,6 @@ package aiss.githubminer.project;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
@@ -13,7 +12,7 @@ public class Project {
 
 
     @JsonProperty("url")
-    private String url;
+    private String WebUrl;
 
     @JsonProperty("id")
     private Integer id;
@@ -22,13 +21,13 @@ public class Project {
     private String name;
 
     @JsonProperty("url")
-    public String getUrl() {
-        return url;
+    public String getWebUrl() {
+        return WebUrl;
     }
 
     @JsonProperty("url")
-    public void setUrl(String url) {
-        this.url = url;
+    public void setWebUrl(String webUrl) {
+        this.WebUrl = webUrl;
     }
 
     @JsonProperty("id")
@@ -57,7 +56,7 @@ public class Project {
         sb.append(Project.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("url");
         sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
+        sb.append(((this.WebUrl == null)?"<null>":this.WebUrl));
         sb.append(',');
 
         sb.append("id");
@@ -68,8 +67,8 @@ public class Project {
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
-        sb.append(',');
        
+
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
