@@ -1,5 +1,5 @@
 
-package aiss.githubminer.project;
+package aiss.githubminer.model;
 
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;

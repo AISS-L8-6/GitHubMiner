@@ -1,27 +1,31 @@
-package aiss.githubminer.model.service;
+package aiss.githubminer.service;
 
 import java.util.List;
+
+import aiss.githubminer.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
+@Service
 public class ProjectService {
     @Autowired
     RestTemplate restTemplate;
 
     // @Value("${githubminer.baseuri}")
-    private String url=  "https://docs.github.com/en/rest/projects";
+    private String url=  "https://api.github.com/repositories";
 
     // @Value("${githubminer.token}")
-    private String token = "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";
+    private String token = "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";
 
     public List<Project> findAllProjects() throws HttpClientErrorException {
 

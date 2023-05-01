@@ -1,5 +1,7 @@
 package aiss.githubminer.service;
 import java.util.List;
+
+import aiss.githubminer.model.Project;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class ProjectServiceTest {
     @Test
     @DisplayName("Get project by id")
     void getProjectById() {
-        String id = "45577899";
+        String id = "29";
         Project project = service.getProjectById(id);
         assertTrue(!project.equals(null), "project is empty");
         System.out.println(project);

@@ -1,6 +1,6 @@
 package aiss.githubminer.service;
 
-import aiss.githubminer.model.Issue;
+import aiss.githubminer.model.Issue.Issue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -21,22 +21,7 @@ public class IssueService {
     @Autowired
     RestTemplate restTemplate;
 
-    private final String token = "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";
-
-    List<Issue> findAllIssue(){
-        HttpHeaders headers = new HttpHeaders();
-        if(token != "") {
-            headers.set("Authorization", "Bearer " + token);
-        }
-        HttpEntity<Issue[]> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Issue[]> response = restTemplate
-                .exchange("https://api.github.com/issues", HttpMethod.GET, request, Issue[].class);
-
-        List<Issue> result = new ArrayList<>();
-        result.addAll(Arrays.asList(response.getBody()));
-
-        return result;
-    }
+    private final String token = "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";
 
     List<Issue> findAllIssueByOwnerAndRepository(String owner, String repository) throws HttpClientErrorException{
 
@@ -74,7 +59,7 @@ public class IssueService {
         }
         HttpEntity<Issue[]> request = new HttpEntity<>(null, headers);
         ResponseEntity<Issue[]> response = restTemplate
-                .exchange("https://api.github.com/repos/" + owner + "/" + repository + "/issues/?state=" + state, HttpMethod.GET, request, Issue[].class);
+                .exchange("https://api.github.com/repos/" + owner + "/" + repository + "/issues?state=" + state, HttpMethod.GET, request, Issue[].class);
 
         List<Issue> result = new ArrayList<>();
         result.addAll(Arrays.asList(response.getBody()));

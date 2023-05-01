@@ -1,12 +1,11 @@
 package aiss.githubminer.service;
 
-import aiss.githubminer.model.Issue;
+import aiss.githubminer.model.Issue.Issue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.awt.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,20 +17,10 @@ class IssueServiceTest {
     IssueService service;
 
     @Test
-    @DisplayName("Find all issue")
-    void findAllIssue(){
-        List<Issue> issues = service.findAllIssue();
-        assertTrue(!issues.isEmpty(), "list of issue is empty");
-        for(Issue i:issues){
-            System.out.println(i);
-        }
-    }
-
-    @Test
     @DisplayName("Get all issue by owner and repository")
     void findAllIssueByOwnerAndRepository() {
-        String owner = "";
-        String repository = "";
+        String owner = "ytdl-org";
+        String repository = "youtube-dl";
         List<Issue> issues = service.findAllIssueByOwnerAndRepository(owner, repository);
         assertTrue(!issues.isEmpty(), "list of issue is empty");
         for(Issue i:issues){
@@ -42,8 +31,8 @@ class IssueServiceTest {
     @Test
     @DisplayName("Find one issue")
     void getIssueById() {
-        String owner = "";
-        String repository = "";
+        String owner = "ytdl-org";
+        String repository = "youtube-dl";
         String issueId = "41";
         Issue issue = service.getIssueById(owner, repository, issueId);
         assertTrue(!issue.equals(null), "issue is empty");
@@ -52,8 +41,8 @@ class IssueServiceTest {
 
     @Test
     void getIssueByProjectAndState() {
-        String owner = "";
-        String repository = "";
+        String owner = "ytdl-org";
+        String repository = "youtube-dl";
         String state = "closed";
         List<Issue> issues = service.getIssueByProjectAndState(owner, repository, state);
         assertTrue(!issues.isEmpty(), "list of issue is empty");

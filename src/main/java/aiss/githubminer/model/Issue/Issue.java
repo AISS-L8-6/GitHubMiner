@@ -1,4 +1,4 @@
-package aiss.githubminer.model;
+package aiss.githubminer.model.Issue;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class Issue {
     @JsonProperty("body")
     private String description;
     @JsonProperty("labels")
-    private List<String> labels;
+    private List<Label> labels;
     @JsonProperty("closedAt")
     private String closed_at;
     @JsonProperty("createdAt")
@@ -79,12 +79,12 @@ public class Issue {
     }
 
     @JsonProperty("labels")
-    public List<String> getLabels() {
+    public List<Label> getLabels() {
         return labels;
     }
 
     @JsonProperty("labels")
-    public void setLabels(List<String> labels) {
+    public void setLabels(List<Label> labels) {
         this.labels = labels;
     }
 
