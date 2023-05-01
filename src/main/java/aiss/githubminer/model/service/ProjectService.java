@@ -1,23 +1,24 @@
 package aiss.githubminer.model.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 public class ProjectService {
     @Autowired
     RestTemplate restTemplate;
 
     // @Value("${githubminer.baseuri}")
-    private String url=  "https://github.com/api/v4/projects";
+    private String url=  "https://docs.github.com/en/rest/projects";
 
     // @Value("${githubminer.token}")
     private String token = "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";
