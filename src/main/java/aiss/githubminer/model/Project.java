@@ -2,21 +2,18 @@
 package aiss.githubminer.model;
 
 import javax.annotation.Generated;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Project {
-
 
     @JsonProperty("url")
     private String WebUrl;
-
     @JsonProperty("id")
     private Integer id;
-
     @JsonProperty("name")
     private String name;
 
@@ -67,7 +64,6 @@ public class Project {
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
-
 
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

@@ -1,6 +1,7 @@
 package aiss.githubminer.model.Issue;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,18 +35,20 @@ public class Issue {
     public String getId() {
         return id;
     }
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
     }
 
-    @JsonProperty("node_id")
-    public String getNodeId() {
+    @JsonProperty("refId")
+    public String getRefId() {
         return ref_id;
     }
-    @JsonProperty("node_id")
-    public void setNodeId(String ref_id) {
-        this.ref_id = ref_id;
+
+    @JsonProperty("refId")
+    public void setRefId(String refId) {
+        this.ref_id = refId;
     }
 
     @JsonProperty("state")
@@ -68,13 +71,13 @@ public class Issue {
         this.title = title;
     }
 
-    @JsonProperty("body")
-    public String getBody() {
+    @JsonProperty("description")
+    public String getDescription() {
         return description;
     }
 
-    @JsonProperty("body")
-    public void setBody(String description) {
+    @JsonProperty("description")
+    public void setDescription(String description) {
         this.description = description;
     }
 

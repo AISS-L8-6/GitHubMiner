@@ -21,7 +21,7 @@ public class CommentService {
     RestTemplate restTemplate;
 
     // @Value("${githubminer.token}")
-    private final String token = "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";
+    private final String token = "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";
 
     public List<Comment> findAllComment(String owner, String repo, String issueNumber) throws HttpClientErrorException {
 

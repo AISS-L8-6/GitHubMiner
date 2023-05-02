@@ -18,7 +18,7 @@ public class UserService {
     @Autowired
     RestTemplate restTemplate;
 
-    String token = "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";
+    String token = "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";
     public List<User> getUsersByOwnerRepo(String owner, String repo) throws HttpClientErrorException {
 
         HttpHeaders headers = new HttpHeaders();

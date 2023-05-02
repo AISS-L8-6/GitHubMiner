@@ -21,7 +21,7 @@ public class IssueService {
     @Autowired
     RestTemplate restTemplate;
 
-    private final String token = "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";
+    private final String token = "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";
 
     List<Issue> findAllIssueByOwnerAndRepository(String owner, String repository) throws HttpClientErrorException{
 

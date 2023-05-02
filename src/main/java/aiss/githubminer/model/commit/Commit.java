@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Commit {
 
+    @JsonProperty("sha")
+    private String id;
     @JsonProperty("url")
     private String url;
     @JsonProperty("author")
@@ -22,6 +24,11 @@ public class Commit {
     @JsonProperty("message")
     private String message;
 
+    @JsonProperty("id")
+    public String getId() {return id;}
+
+    @JsonProperty("id")
+    public void setId(String id) {this.id = id;}
 
     @JsonProperty("url")
     public String getUrl() {
@@ -67,6 +74,10 @@ public class Commit {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("id");
+        sb.append('=');
+        sb.append(((this.id == null)?"<null>":this.id));
+        sb.append(',');
         sb.append("web_url");
         sb.append('=');
         sb.append(((this.url == null)?"<null>":this.url));

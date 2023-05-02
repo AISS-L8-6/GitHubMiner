@@ -25,7 +25,7 @@ public class ProjectService {
     private String url=  "https://api.github.com/repositories";
 
     // @Value("${githubminer.token}")
-    private String token = "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";
+    private String token = "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";
 
     public List<Project> findAllProjects() throws HttpClientErrorException {
 
