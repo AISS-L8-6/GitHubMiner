@@ -157,6 +157,9 @@ public class Issue {
         sb.append('=');
         sb.append(((this.description == null)?"<null>":this.description));
         sb.append(',');
+        sb.append("reactions");
+        sb.append('=');
+        sb.append(((this.reactions == null)?"<null>":this.reactions));
         sb.append("labels");
         sb.append('=');
         sb.append(((this.labels == null)?"<null>":this.labels));
