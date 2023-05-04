@@ -11,35 +11,45 @@ public class CommitParse {
     private String author_name;
     private String author_email;
     private String authored_date;
-    private String committer_mane;
+    private String committer_name;
     private String committer_email;
     private String committed_date;
     private String web_url;
 
     public CommitParse(Author author, Commit commit, Committer committer){
         this.id = commit.getId();
-        this.title = null;
-        this.message = commit.getMessage();
+        this.title = getTitle(commit.getTitleAndMessage());
+        this.message = getMessage(commit.getTitleAndMessage());
         this.author_name = author.getName();
         this.author_email = author.getEmail();
-        this.authored_date = null;
-        this.committer_mane = committer.getName();
+        this.authored_date = author.getDate();
+        this.committer_name = committer.getName();
         this.committer_email = committer.getEmail();
         this.committed_date = committer.getDate();
         this.web_url = commit.getUrl();
     }
 
-    public CommitParse(String id, String title, String message, String author_name, String author_email, String authored_date, String committer_mane, String committer_email, String committed_date, String web_url) {
+    public CommitParse(String id, String title, String message, String author_name, String author_email, String authored_date, String committer_name, String committer_email, String committed_date, String web_url) {
         this.id = id;
         this.title = title;
         this.message = message;
         this.author_name = author_name;
         this.author_email = author_email;
         this.authored_date = authored_date;
-        this.committer_mane = committer_mane;
+        this.committer_name = committer_name;
         this.committer_email = committer_email;
         this.committed_date = committed_date;
         this.web_url = web_url;
+    }
+
+    private String getMessage(String titleAndMessage) {
+        String[] partes = titleAndMessage.split("\n\n");
+        return partes[0];
+    }
+
+    private String getTitle(String titleAndMessage) {
+        String[] partes = titleAndMessage.split("\n\n");
+        return partes[1];
     }
 
     public String getId() {
@@ -90,12 +100,12 @@ public class CommitParse {
         this.authored_date = authored_date;
     }
 
-    public String getCommitter_mane() {
-        return committer_mane;
+    public String getCommitter_name() {
+        return committer_name;
     }
 
-    public void setCommitter_mane(String committer_mane) {
-        this.committer_mane = committer_mane;
+    public void setCommitter_name(String committer_name) {
+        this.committer_name = committer_name;
     }
 
     public String getCommitter_email() {

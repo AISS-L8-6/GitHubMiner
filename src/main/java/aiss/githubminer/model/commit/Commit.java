@@ -1,12 +1,9 @@
 
 package aiss.githubminer.model.commit;
 
-import javax.annotation.Generated;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
@@ -22,7 +19,7 @@ public class Commit {
     @JsonProperty("committer")
     private Committer committer;
     @JsonProperty("message")
-    private String message;
+    private String titleAndMessage;
 
     @JsonProperty("id")
     public String getId() {return id;}
@@ -61,13 +58,13 @@ public class Commit {
     }
 
     @JsonProperty("message")
-    public String getMessage() {
-        return message;
+    public String getTitleAndMessage() {
+        return titleAndMessage;
     }
 
     @JsonProperty("message")
-    public void setMessage(String message) {
-        this.message = message;
+    public void setTitleAndMessage(String titleAndMessage) {
+        this.titleAndMessage = titleAndMessage;
     }
 
     @Override
@@ -88,7 +85,7 @@ public class Commit {
         sb.append(',');
         sb.append("message");
         sb.append('=');
-        sb.append(((this.message == null)?"<null>":this.message));
+        sb.append(((this.titleAndMessage == null)?"<null>":this.titleAndMessage));
         sb.append(',');
         sb.append("committer");
         sb.append('=');
