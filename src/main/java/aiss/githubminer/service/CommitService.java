@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class CommitService {
     @Autowired
     RestTemplate restTemplate;
@@ -33,11 +34,26 @@ public class CommitService {
         }else {
             url.concat("?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&");
         }
+
+
+       /* String nextPageURL= Util.getNextPageURL(response.getHeaders());
+        int page=2;
+        while (nextPageURL != null && page <= maxPages){
+            logger.debug("Retrieving commits form page"+ page+":"+nextPageURL);
+            response = getCommits(nextPageURL);
+            pageCommits=Arrays.stream(response.getBody()).toList();
+            logger.debug(pageCommits.size()+"commits retrieved.");
+            commits.addAll(pageCommits);
+            nextPageURL= Util.getNextPaggeUrl(response.getHeaders());
+            page++;
+        }
+        */
+
         if(per_page.equals(null)) {
             url.concat("?per_page=" + this.maxPages);
         }else {
-            url.concat("?per_page=" + per_page);
-        }
+        url.concat("?per_page=" + per_page);
+        }   
 
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {
