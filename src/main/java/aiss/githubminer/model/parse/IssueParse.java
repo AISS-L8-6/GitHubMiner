@@ -1,5 +1,6 @@
 package aiss.githubminer.model.parse;
 
+import aiss.githubminer.model.Comment;
 import aiss.githubminer.model.Issue.Issue;
 import aiss.githubminer.model.Issue.Label;
 
@@ -18,8 +19,9 @@ public class IssueParse {
     private List<String> labels;
     private Integer upvotes;
     private Integer downvotes;
+    private List<Comment> comments;
 
-    public IssueParse(Issue issue){
+    public IssueParse(Issue issue, List<Comment> comments){
         this.id = issue.getId();
         this.ref_id = issue.getRefId();
         this.title = issue.getTitle();
@@ -31,9 +33,10 @@ public class IssueParse {
         this.labels = issue.getLabels().stream().map(x -> x.toString()).collect(Collectors.toList());
         this.upvotes = issue.getReactions().getUpvotes();
         this.downvotes = issue.getReactions().getDownvotes();
+        this.comments = comments;
     }
 
-    public IssueParse(String id, String ref_id, String title, String description, String state, String created_at, String update_at, String closed_at, List<String> labels, Integer upvotes, Integer downvotes) {
+    public IssueParse(String id, String ref_id, String title, String description, String state, String created_at, String update_at, String closed_at, List<String> labels, Integer upvotes, Integer downvotes, List<Comment> comments) {
         this.id = id;
         this.ref_id = ref_id;
         this.title = title;
@@ -45,5 +48,6 @@ public class IssueParse {
         this.labels = labels;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
+        this.comments = comments;
     }
 }
