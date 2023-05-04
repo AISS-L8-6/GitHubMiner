@@ -1,4 +1,4 @@
-package aiss.githubminer.model;
+package aiss.githubminer.model.parse;
 
 import aiss.githubminer.model.commit.Author;
 import aiss.githubminer.model.commit.Commit;

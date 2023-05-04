@@ -1,4 +1,4 @@
-package aiss.githubminer.model;
+package aiss.githubminer.model.parse;
 
 import aiss.githubminer.model.Issue.Issue;
 import aiss.githubminer.model.Issue.Label;
