@@ -29,8 +29,8 @@ public class IssueParse {
         this.update_at = issue.getUpdatedAt();
         this.closed_at = issue.getClosedAt();
         this.labels = issue.getLabels().stream().map(x -> x.toString()).collect(Collectors.toList());
-        this.upvotes = null;
-        this.downvotes = null;
+        this.upvotes = issue.getReactions().getUpvotes();
+        this.downvotes = issue.getReactions().getDownvotes();
     }
 
     public IssueParse(String id, String ref_id, String title, String description, String state, String created_at, String update_at, String closed_at, List<String> labels, Integer upvotes, Integer downvotes) {

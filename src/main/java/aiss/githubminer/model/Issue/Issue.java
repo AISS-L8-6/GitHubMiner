@@ -22,6 +22,8 @@ public class Issue {
     private String title;
     @JsonProperty("body")
     private String description;
+    @JsonProperty("reactions")
+    private Reactions reactions;
     @JsonProperty("labels")
     private List<Label> labels;
     @JsonProperty("closedAt")
@@ -89,6 +91,16 @@ public class Issue {
     @JsonProperty("labels")
     public void setLabels(List<Label> labels) {
         this.labels = labels;
+    }
+
+    @JsonProperty("reactions")
+    public Reactions getReactions() {
+        return reactions;
+    }
+
+    @JsonProperty("reactions")
+    public void setReactions(Reactions reactions) {
+        this.reactions = reactions;
     }
 
     @JsonProperty("closed_at")
