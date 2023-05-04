@@ -34,9 +34,15 @@ public class CommitService {
         }else {
             url.concat("?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&");
         }
+        if(per_page.equals(null)) {
+            url.concat("?per_page=" + this.maxPages);
+        }else {
+        url.concat("?per_page=" + per_page);
+        }
 
 
-       /* String nextPageURL= Util.getNextPageURL(response.getHeaders());
+
+        /* String nextPageURL= Util.getNextPageURL(response.getHeaders());
         int page=2;
         while (nextPageURL != null && page <= maxPages){
             logger.debug("Retrieving commits form page"+ page+":"+nextPageURL);
@@ -48,12 +54,6 @@ public class CommitService {
             page++;
         }
         */
-
-        if(per_page.equals(null)) {
-            url.concat("?per_page=" + this.maxPages);
-        }else {
-        url.concat("?per_page=" + per_page);
-        }   
 
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {
