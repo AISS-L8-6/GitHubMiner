@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-
 public class User {
 
     @JsonProperty("login")
