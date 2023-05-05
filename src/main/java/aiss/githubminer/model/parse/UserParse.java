@@ -16,14 +16,14 @@ public class UserParse {
     private List<Comment> comments;
 
     public UserParse(String id, String username, String name, String avatar_url, String web_url, List<IssueParse> issuesAsigns , List<IssueParse> issuesAuthor, List<Comment> comments) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.avatar_url = avatar_url;
-        this.web_url = web_url;
-        this.issuesAsigns = issuesAsigns;
-        this.issuesAuthor = issuesAuthor;
-        this.comments = comments;
+        this.id = id ;
+        this.username = username ;
+        this.name = name ;
+        this.avatar_url = avatar_url ;
+        this.web_url = web_url ;
+        this.issuesAsigns = issuesAsigns ;
+        this.issuesAuthor = issuesAuthor ;
+        this.comments = comments ;
     }
 
     public String getId() {
