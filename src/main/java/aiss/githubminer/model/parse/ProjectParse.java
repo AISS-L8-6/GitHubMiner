@@ -5,6 +5,7 @@ import aiss.githubminer.model.commit.Commit;
 
 import java.util.List;
 
+
 public class ProjectParse {
 
     private String id;
