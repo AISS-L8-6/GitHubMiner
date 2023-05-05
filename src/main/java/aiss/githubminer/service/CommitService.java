@@ -6,6 +6,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,13 +15,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+@Service
 public class CommitService {
     @Autowired
     RestTemplate restTemplate;
 
     // @Value("${githubminer.token}")
-    private final String token = "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";
+    private final String token = "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";
 
     private final LocalDateTime sinceCommits = LocalDateTime.now().minusDays(2);
     private final String maxPages = "2";
@@ -37,9 +38,8 @@ public class CommitService {
         if(per_page.equals(null)) {
             url.concat("?per_page=" + this.maxPages);
         }else {
-        url.concat("?per_page=" + per_page);
+            url.concat("?per_page=" + per_page);
         }
-
 
 
         /* String nextPageURL= Util.getNextPageURL(response.getHeaders());
