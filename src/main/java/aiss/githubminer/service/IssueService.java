@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,8 @@ public class IssueService {
 
     private final String token = "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";
 
-    List<Issue> findAllIssueByOwnerAndRepository(String owner, String repository) throws HttpClientErrorException{
+
+    public List<Issue> findAllIssueByOwnerAndRepository(String owner, String repository) throws HttpClientErrorException{
 
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {

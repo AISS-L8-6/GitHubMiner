@@ -22,7 +22,7 @@ public class ProjectService {
     RestTemplate restTemplate;
 
     // @Value("${githubminer.baseuri}")
-    private String url=  "https://api.github.com/repositories";
+    private String url=  "https://api.github.com/repos";
 
     // @Value("${githubminer.token}")
     private String token = "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";
@@ -52,6 +52,17 @@ public class ProjectService {
         HttpEntity<Project> request = new HttpEntity<>(null, headers);
         ResponseEntity<Project> response = restTemplate
                 .exchange(url+"/"+id, HttpMethod.GET, request, Project.class);
+        return response.getBody();
+    }
+    public Project getProjectByUserRepo(String owner,String repository) throws HttpClientErrorException{
+
+        HttpHeaders headers = new HttpHeaders();
+        if(token != "") {
+            headers.set("Authorization", "Bearer " + token);
+        }
+        HttpEntity<Project> request = new HttpEntity<>(null, headers);
+        ResponseEntity<Project> response = restTemplate
+                .exchange(url+"/"+owner+"/"+repository, HttpMethod.GET, request, Project.class);
         return response.getBody();
     }
 }
