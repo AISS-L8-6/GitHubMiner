@@ -1,17 +1,13 @@
 package aiss.githubminer.model;
 
-import javax.annotation.Generated;
-
-import aiss.githubminer.model.commit.Author;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class Author {
 
     @JsonProperty("login")
     private String username;
@@ -78,7 +74,7 @@ public class User {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(aiss.githubminer.model.commit.Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));

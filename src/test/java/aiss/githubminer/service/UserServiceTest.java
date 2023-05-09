@@ -1,7 +1,7 @@
 package aiss.githubminer.service;
 
 
-import aiss.githubminer.model.User;
+import aiss.githubminer.model.Author;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,9 @@ public class UserServiceTest {
     void getUsersByOwnerRepo() {
         String owner = "ytdl-org";
         String repo = "youtube-dl";
-        List<User> users = service.getUsersByOwnerRepo(owner,repo);
+        List<Author> users = service.getUsersByOwnerRepo(owner,repo);
         assertTrue(!users.isEmpty(), "list of users is empty");
-        for(User p:users){
+        for(Author p:users){
             System.out.println(p);
         }
     }

@@ -1,7 +1,6 @@
 package aiss.githubminer.model.Issue;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,10 +21,15 @@ public class Issue {
     private String title;
     @JsonProperty("body")
     private String description;
+    @JsonProperty("user")
+    private aiss.githubminer.model.Issue.Author author;
     @JsonProperty("reactions")
     private Reactions reactions;
     @JsonProperty("labels")
     private List<Label> labels;
+
+    @JsonProperty("assignee")
+    private Assignee assignee;
     @JsonProperty("closedAt")
     private String closed_at;
     @JsonProperty("createdAt")
@@ -71,6 +75,15 @@ public class Issue {
     @JsonProperty("title")
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @JsonProperty("user")
+    public Author getAuthor() {
+        return author;
+    }
+    @JsonProperty("user")
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @JsonProperty("description")
@@ -156,6 +169,11 @@ public class Issue {
         sb.append("body");
         sb.append('=');
         sb.append(((this.description == null)?"<null>":this.description));
+        sb.append(',');
+        sb.append("user");
+        sb.append('=');
+        sb.append(((this.author == null)?"<null>":this.author));
+
         sb.append(',');
         sb.append("reactions");
         sb.append('=');

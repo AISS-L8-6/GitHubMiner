@@ -12,24 +12,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import aiss.githubminer.model.User;
+import aiss.githubminer.model.Author;
 @Service
 public class UserService {
     @Autowired
     RestTemplate restTemplate;
 
     String token = "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";
-    public List<User> getUsersByOwnerRepo(String owner, String repo) throws HttpClientErrorException {
+    public List<Author> getUsersByOwnerRepo(String owner, String repo) throws HttpClientErrorException {
 
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {
             headers.set("Authorization", "Bearer " + token);
         }
-        HttpEntity<User> request = new HttpEntity<>(null, headers);
-        ResponseEntity<User[]> response = restTemplate
-                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/collaborators", HttpMethod.GET, request, User[].class);
+        HttpEntity<Author> request = new HttpEntity<>(null, headers);
+        ResponseEntity<Author[]> response = restTemplate
+                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/collaborators", HttpMethod.GET, request, Author[].class);
 
-        List<User> result = new ArrayList<>();
+        List<Author> result = new ArrayList<>();
         result.addAll(Arrays.asList(response.getBody()));
 
         return result;
