@@ -34,4 +34,16 @@ public class UserService {
                 .exchange("https://api.github.com/users/" + username, HttpMethod.GET, request, User.class);
         return response.getBody();
     }
+
+    public String getNameFromUserByUsername(String username) throws HttpClientErrorException{
+        HttpHeaders headers = new HttpHeaders();
+        if(token != "") {
+            headers.set("Authorization", "Bearer " + token);
+        }
+        HttpEntity<User> request = new HttpEntity<>(null, headers);
+        ResponseEntity<User> response = restTemplate
+                .exchange("https://api.github.com/users/" + username, HttpMethod.GET, request, User.class);
+        return response.getBody().getName();
+    }
+
 }

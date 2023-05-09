@@ -146,6 +146,16 @@ public class Issue {
         this.updated_at = updated_at;
     }
 
+    @JsonProperty("assignee")
+    public Assignee getAssignee() {
+        return assignee;
+    }
+
+    @JsonProperty("assignee")
+    public void setAssignee(Assignee assignee) {
+        this.assignee = assignee;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

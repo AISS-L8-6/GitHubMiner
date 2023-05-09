@@ -1,7 +1,9 @@
 package aiss.githubminer.model.parse;
 
-import aiss.githubminer.model.Issue.Author;
+import aiss.githubminer.model.Issue.Assignee;
 import aiss.githubminer.model.User;
+import aiss.githubminer.model.comment.Author;
+import aiss.githubminer.service.UserService;
 
 public class UserParse {
 
@@ -26,6 +28,30 @@ public class UserParse {
         this.avatar_url = user.getAvatarUrl();
         this.web_url = user.getWeb_url();
     }
+
+    public UserParse(Author author){ //author de comment
+        this.id = author.getId().toString();
+        this.username = author.getUsername();
+        this.name = null;
+        this.avatar_url = author.getAvatarUrl();
+        this.web_url = author.getWeb_url();
+    }
+
+    public UserParse(aiss.githubminer.model.Issue.Author author){ //author de issue
+        this.id = author.getId().toString();
+        this.username = author.getUsername();
+        this.name = null;
+        this.avatar_url = author.getAvatarUrl();
+        this.web_url = author.getWeb_url();
+    }
+    public UserParse(Assignee assignee){
+        this.id = assignee.getId().toString();
+        this.username = assignee.getUsername();
+        this.name = null;
+        this.avatar_url = assignee.getAvatarUrl();
+        this.web_url = assignee.getWeb_url();
+    }
+
     public String getId() {
         return id;
     }

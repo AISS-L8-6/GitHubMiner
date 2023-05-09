@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class IssueParse {
-    //TODO: Añadir relaciones Author y Asignee
     private String id;
     private String ref_id;
     private String title;
@@ -22,7 +21,6 @@ public class IssueParse {
     private UserParse author;
     private UserParse assignee;
 
-    // TODO: Completar los constructores para que contemplen Author y Assignee
 
     public IssueParse(Issue issue, List<CommentParse> comments){
         this.id = issue.getId();
@@ -37,10 +35,12 @@ public class IssueParse {
         this.upvotes = issue.getReactions().getUpvotes();
         this.downvotes = issue.getReactions().getDownvotes();
         this.comments = comments;
+        this.author = new UserParse(issue.getAuthor());
+        this.assignee = new UserParse(issue.getAssignee());
 
     }
 
-    public IssueParse(String id, String ref_id, String title, String description, String state, String created_at, String update_at, String closed_at, List<String> labels, Integer upvotes, Integer downvotes, List<CommentParse> comments) {
+    public IssueParse(String id, String ref_id, String title, String description, String state, String created_at, String update_at, String closed_at, List<String> labels, Integer upvotes, Integer downvotes, List<CommentParse> comments, UserParse author, UserParse assignee) {
         this.id = id;
         this.ref_id = ref_id;
         this.title = title;
@@ -53,5 +53,7 @@ public class IssueParse {
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.comments = comments;
+        this.author = author;
+        this.assignee = assignee;
     }
 }

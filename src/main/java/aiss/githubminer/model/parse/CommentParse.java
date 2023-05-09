@@ -6,16 +6,14 @@ import aiss.githubminer.model.User;
 import aiss.githubminer.model.comment.Comment;
 
 public class CommentParse {
-    //TODO: necesita un User
+
         private String id;
         private String body;
         private String created_at;
         private String updated_at;
         private UserParse author;
 
-        // TODO: añadir autor del comentario
-
-        public CommentParse(String id, String body   , String created_at, String updated_at, UserParse author) {
+        public CommentParse(String id, String body, String created_at, String updated_at, UserParse author) {
             this.id = id;
             this.body = body;
             this.created_at = created_at;
@@ -23,13 +21,12 @@ public class CommentParse {
             this.author = author;
         }
 
-
-    public CommentParse(Comment comment) {
-            this.id = comment.getId();
-            this.body = comment.getBody();
-            this.created_at = comment.getCreatedAt();
-            this.updated_at = comment.getUpdatedAt();
-            this.author = null;// new UserParse(new User(comment.getAuthor()));
+        public CommentParse(Comment comment) {
+                this.id = comment.getId();
+                this.body = comment.getBody();
+                this.created_at = comment.getCreatedAt();
+                this.updated_at = comment.getUpdatedAt();
+                this.author = new UserParse(comment.getAuthor());
 
         }
 
@@ -64,4 +61,8 @@ public class CommentParse {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
+    public UserParse getAuthor() {return author;}
+
+    public void setAuthor(UserParse author) {this.author = author;}
 }
