@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class IssueParse {
+    //TODO: Añadir relaciones Author y Asignee
     private String id;
     private String ref_id;
     private String title;

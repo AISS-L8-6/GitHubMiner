@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Author {
+public class  Author {
     @JsonProperty("login")
     private String username;
     @JsonProperty("id")

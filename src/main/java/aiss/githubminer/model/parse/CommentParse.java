@@ -5,6 +5,7 @@ package aiss.githubminer.model.parse;
 import aiss.githubminer.model.Comment;
 
 public class CommentParse {
+    //TODO: necesita un User
         private String id;
         private String body;
 

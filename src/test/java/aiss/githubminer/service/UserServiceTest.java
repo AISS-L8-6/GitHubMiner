@@ -1,7 +1,6 @@
 package aiss.githubminer.service;
 
 
-import aiss.githubminer.model.Author;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
