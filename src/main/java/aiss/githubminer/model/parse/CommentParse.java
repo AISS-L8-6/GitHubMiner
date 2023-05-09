@@ -11,6 +11,8 @@ public class CommentParse {
         private String created_at;
         private String updated_at;
 
+        // TODO: añadir autor del comentario
+
         public CommentParse(String id, String body   , String created_at, String updated_at) {
             this.id = id;
             this.body = body;

@@ -27,33 +27,6 @@ public class ProjectService {
     // @Value("${githubminer.token}")
     private String token = "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";
 
-    public List<Project> findAllProjects() throws HttpClientErrorException {
-
-        HttpHeaders headers = new HttpHeaders();
-        if(token != "") {
-            headers.set("Authorization", "Bearer " + token);
-        }
-        HttpEntity<Project[]> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Project[]> response = restTemplate
-                .exchange(url, HttpMethod.GET, request, Project[].class);
-
-        List<Project> result = new ArrayList<>();
-        result.addAll(Arrays.asList(response.getBody()));
-
-        return result;
-    }
-
-    public Project getProjectById(String id) throws HttpClientErrorException{
-
-        HttpHeaders headers = new HttpHeaders();
-        if(token != "") {
-            headers.set("Authorization", "Bearer " + token);
-        }
-        HttpEntity<Project> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Project> response = restTemplate
-                .exchange(url+"/"+id, HttpMethod.GET, request, Project.class);
-        return response.getBody();
-    }
     public Project getProjectByUserRepo(String owner,String repository) throws HttpClientErrorException{
 
         HttpHeaders headers = new HttpHeaders();

@@ -19,19 +19,7 @@ public class UserService {
     RestTemplate restTemplate;
 
     String token = "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";
-    public List<Author> getUsersByOwnerRepo(String owner, String repo) throws HttpClientErrorException {
 
-        HttpHeaders headers = new HttpHeaders();
-        if(token != "") {
-            headers.set("Authorization", "Bearer " + token);
-        }
-        HttpEntity<Author> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Author[]> response = restTemplate
-                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/collaborators", HttpMethod.GET, request, Author[].class);
 
-        List<Author> result = new ArrayList<>();
-        result.addAll(Arrays.asList(response.getBody()));
-
-        return result;
-    }
+    //TODO: Añadir: https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user para poder obtener todos los datos que falten
 }

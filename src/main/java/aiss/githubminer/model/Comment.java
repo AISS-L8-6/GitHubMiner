@@ -16,6 +16,8 @@ public class Comment {
     @JsonProperty("updated_at")
     private String updatedAt;
 
+    //TODO: Falta atributo author
+
     @JsonProperty("id")
     public String getId() {
         return id;

@@ -19,9 +19,13 @@ public class IssueParse {
     private List<String> labels;
     private Integer upvotes;
     private Integer downvotes;
-    private List<Comment> comments;
+    private List<CommentParse> comments;
+    private UserParse author;
+    private UserParse assignee;
 
-    public IssueParse(Issue issue, List<Comment> comments){
+    // TODO: Completar los constructores para que contemplen Author y Assignee
+
+    public IssueParse(Issue issue, List<CommentParse> comments){
         this.id = issue.getId();
         this.ref_id = issue.getRefId();
         this.title = issue.getTitle();
@@ -36,7 +40,7 @@ public class IssueParse {
         this.comments = comments;
     }
 
-    public IssueParse(String id, String ref_id, String title, String description, String state, String created_at, String update_at, String closed_at, List<String> labels, Integer upvotes, Integer downvotes, List<Comment> comments) {
+    public IssueParse(String id, String ref_id, String title, String description, String state, String created_at, String update_at, String closed_at, List<String> labels, Integer upvotes, Integer downvotes, List<CommentParse> comments) {
         this.id = id;
         this.ref_id = ref_id;
         this.title = title;

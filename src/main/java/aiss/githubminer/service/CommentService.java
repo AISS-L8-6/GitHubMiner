@@ -38,17 +38,4 @@ public class CommentService {
 
         return result;
     }
-
-
-    public Comment getCommentById(String owner, String repo, String commentId) throws HttpClientErrorException{
-
-        HttpHeaders headers = new HttpHeaders();
-        if(token != "") {
-            headers.set("Authorization", "Bearer " + token);
-        }
-        HttpEntity<Comment> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Comment> response = restTemplate
-                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/issues/comments/" + commentId, HttpMethod.GET, request, Comment.class);
-        return response.getBody();
-    }
 }

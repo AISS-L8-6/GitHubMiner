@@ -41,31 +41,4 @@ public class IssueService {
         return result;
     }
 
-    public Issue getIssueById(String owner, String repository, String issueIid) throws HttpClientErrorException{
-
-        HttpHeaders headers = new HttpHeaders();
-        if(token != "") {
-            headers.set("Authorization", "Bearer " + token);
-        }
-        HttpEntity<Issue> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Issue> response = restTemplate
-                .exchange("https://api.github.com/repos/" + owner + "/" + repository + "/issues/" + issueIid, HttpMethod.GET, request, Issue.class);
-
-        return response.getBody();
-    }
-
-    public List<Issue> getIssueByProjectAndState(String owner, String repository, String state)  throws HttpClientErrorException{
-        HttpHeaders headers = new HttpHeaders();
-        if(token != "") {
-            headers.set("Authorization", "Bearer " + token);
-        }
-        HttpEntity<Issue[]> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Issue[]> response = restTemplate
-                .exchange("https://api.github.com/repos/" + owner + "/" + repository + "/issues?state=" + state, HttpMethod.GET, request, Issue[].class);
-
-        List<Issue> result = new ArrayList<>();
-        result.addAll(Arrays.asList(response.getBody()));
-
-        return result.stream().filter(i -> i.getState().equals(state)).collect(Collectors.toList());
-    }
 }

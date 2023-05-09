@@ -35,7 +35,7 @@ public class projectController {
 
         @Autowired
         UserService userService;
-
+/*
         @GetMapping("/gitHubMiner/project/{owner}/{repoName}")
         public ProjectParse getByOwnerRepo(@PathVariable String owner, String repository, @RequestParam(name = "sinceCommits") Integer sinceCommits, @RequestParam(name = "sinceIssues") Integer sinceIssues, @RequestParam(name = "maxPages") Integer maxPages) {
             ProjectParse result;
@@ -56,7 +56,7 @@ public class projectController {
                 }
                 IssueParse issueParse = new IssueParse(issueList.get(i), author, assignee, commentParses);
                 issueParses.add(issueParse);
-            }*/
+            }
 
             for (int i = 0; i < issueList.size(); i++) {
                 issueParses.add(new IssueParse(issueList.get(i),))
@@ -94,7 +94,7 @@ public class projectController {
 
             return restTemplate.postForObject("http://localhost:8080/gitminer/projects", result, ProjectParse.class);
         }
-
+*/
 
 
     }

@@ -11,10 +11,10 @@ public class ProjectParse {
     private String id;
     private String name;
     private String web_url;
-    private List<Commit> commits;
+    private List<CommitParse> commits;
     private List<IssueParse> issues;
 
-    public ProjectParse(String id, String name, String web_url, List<Commit> commits, List<IssueParse> issues) {
+    public ProjectParse(String id, String name, String web_url, List<CommitParse> commits, List<IssueParse> issues) {
         this.id = id;
         this.name = name;
         this.web_url = web_url;
@@ -22,7 +22,7 @@ public class ProjectParse {
         this.issues = issues;
     }
 
-    public ProjectParse(Project project, List<Commit> commits, List<IssueParse> issues) {
+    public ProjectParse(Project project, List<CommitParse> commits, List<IssueParse> issues) {
         this.id = project.getId().toString();
         this.name = project.getName();
         this.web_url = project.getWebUrl();
@@ -54,11 +54,11 @@ public class ProjectParse {
         this.web_url = web_url;
     }
 
-    public List<Commit> getCommits() {
+    public List<CommitParse> getCommits() {
         return commits;
     }
 
-    public void setCommits(List<Commit> commits) {
+    public void setCommits(List<CommitParse> commits) {
         this.commits = commits;
     }
 
