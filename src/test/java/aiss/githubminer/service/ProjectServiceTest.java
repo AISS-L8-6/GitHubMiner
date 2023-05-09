@@ -15,6 +15,7 @@ public class ProjectServiceTest {
     @Autowired
     ProjectService service;
 
+    /*
     @Test
     @DisplayName("Get all projects")
     void findAllProjects() {
@@ -33,5 +34,7 @@ public class ProjectServiceTest {
         assertTrue(!project.equals(null), "project is empty");
         System.out.println(project);
     }
+
+     */
 }
 

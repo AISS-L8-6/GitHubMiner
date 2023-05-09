@@ -1,6 +1,7 @@
 package aiss.githubminer.service;
 
 
+import aiss.githubminer.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +16,12 @@ public class UserServiceTest {
     @Autowired
     UserService service;
     @Test
-    @DisplayName("Get user by project owner + repo")
-    void getUsersByOwnerRepo() {
-        String owner = "ytdl-org";
-        String repo = "youtube-dl";
-        List<Author> users = service.getUsersByOwnerRepo(owner,repo);
-        assertTrue(!users.isEmpty(), "list of users is empty");
-        for(Author p:users){
-            System.out.println(p);
-        }
+    @DisplayName("Get user by username")
+    void getUserByUsername() {
+        String username = "octocat";
+        User user = service.getUserByUsername(username);
+        assertTrue(!user.equals(""), "user is empty");
+        System.out.println(user);
     }
+
 }

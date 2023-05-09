@@ -1,6 +1,10 @@
 package aiss.githubminer.service;
 
+
+import aiss.githubminer.GitHubMinerApplication;
+import aiss.githubminer.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,8 +21,17 @@ public class UserService {
     @Autowired
     RestTemplate restTemplate;
 
-    String token = "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";
+    @Value("${token}")
+    private String token;
 
-
-    //TODO: Añadir: https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user para poder obtener todos los datos que falten
+    public User getUserByUsername(String username) throws HttpClientErrorException{
+        HttpHeaders headers = new HttpHeaders();
+        if(token != "") {
+            headers.set("Authorization", "Bearer " + token);
+        }
+        HttpEntity<User> request = new HttpEntity<>(null, headers);
+        ResponseEntity<User> response = restTemplate
+                .exchange("https://api.github.com/users/" + username, HttpMethod.GET, request, User.class);
+        return response.getBody();
+    }
 }

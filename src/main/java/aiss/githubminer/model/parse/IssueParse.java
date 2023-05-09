@@ -37,6 +37,7 @@ public class IssueParse {
         this.upvotes = issue.getReactions().getUpvotes();
         this.downvotes = issue.getReactions().getDownvotes();
         this.comments = comments;
+
     }
 
     public IssueParse(String id, String ref_id, String title, String description, String state, String created_at, String update_at, String closed_at, List<String> labels, Integer upvotes, Integer downvotes, List<CommentParse> comments) {

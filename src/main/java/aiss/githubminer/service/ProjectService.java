@@ -4,6 +4,7 @@ import java.util.List;
 
 import aiss.githubminer.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -25,7 +26,8 @@ public class ProjectService {
     private String url=  "https://api.github.com/repos";
 
     // @Value("${githubminer.token}")
-    private String token = "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";
+    @Value("${token}")
+    private String token;
 
     public Project getProjectByUserRepo(String owner,String repository) throws HttpClientErrorException{
 

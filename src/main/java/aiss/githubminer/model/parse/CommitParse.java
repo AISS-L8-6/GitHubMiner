@@ -17,8 +17,6 @@ public class CommitParse {
     private String web_url;
 
 
-
-
     public CommitParse(Author author, Commit commit, Committer committer){
         this.id = commit.getId();
         this.title = getTitle(commit.getTitleAndMessage());

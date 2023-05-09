@@ -2,6 +2,7 @@ package aiss.githubminer.service;
 
 import aiss.githubminer.model.commit.Commit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,8 +21,8 @@ public class CommitService {
     @Autowired
     RestTemplate restTemplate;
 
-    // @Value("${githubminer.token}")
-    private final String token = "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";
+    @Value("${token}")
+    private String token;
 
     private final LocalDateTime sinceCommits = LocalDateTime.now().minusDays(2);
     private final String maxPages = "2";

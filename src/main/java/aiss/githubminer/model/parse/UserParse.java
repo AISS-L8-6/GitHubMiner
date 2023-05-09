@@ -1,5 +1,8 @@
 package aiss.githubminer.model.parse;
 
+import aiss.githubminer.model.Issue.Author;
+import aiss.githubminer.model.User;
+
 public class UserParse {
 
     private String id;
@@ -16,6 +19,13 @@ public class UserParse {
         this.web_url = web_url ;
     }
 
+    public UserParse(User user){
+        this.id = user.getId().toString();
+        this.username = user.getUsername();
+        this.name = user.getName();
+        this.avatar_url = user.getAvatarUrl();
+        this.web_url = user.getWeb_url();
+    }
     public String getId() {
         return id;
     }

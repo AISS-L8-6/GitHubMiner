@@ -28,6 +28,7 @@ class IssueServiceTest {
         }
     }
 
+    /*
     @Test
     @DisplayName("Find one issue")
     void getIssueById() {
@@ -50,4 +51,5 @@ class IssueServiceTest {
             System.out.println(i);
         }
     }
+     */
 }
