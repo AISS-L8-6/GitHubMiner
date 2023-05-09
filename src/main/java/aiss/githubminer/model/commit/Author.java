@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Author {
-
+// TODO: Revisar atributos
     @JsonProperty("name")
     private String name;
     @JsonProperty("email")

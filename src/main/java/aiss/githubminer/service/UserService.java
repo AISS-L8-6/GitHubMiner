@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import aiss.githubminer.model.Author;
 @Service
 public class UserService {
     @Autowired

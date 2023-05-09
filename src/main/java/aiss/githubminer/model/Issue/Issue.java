@@ -22,7 +22,7 @@ public class Issue {
     @JsonProperty("body")
     private String description;
     @JsonProperty("user")
-    private aiss.githubminer.model.Issue.Author author;
+    private Author author;
     @JsonProperty("reactions")
     private Reactions reactions;
     @JsonProperty("labels")
