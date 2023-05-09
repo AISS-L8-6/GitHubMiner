@@ -1,9 +1,5 @@
 package aiss.githubminer.model.parse;
 
-import aiss.githubminer.model.Comment;
-
-import java.util.List;
-
 public class UserParse {
 
     private String id;

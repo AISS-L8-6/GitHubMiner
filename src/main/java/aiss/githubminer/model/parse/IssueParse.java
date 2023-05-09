@@ -1,8 +1,6 @@
 package aiss.githubminer.model.parse;
 
-import aiss.githubminer.model.Comment;
 import aiss.githubminer.model.Issue.Issue;
-import aiss.githubminer.model.Issue.Label;
 
 import java.util.List;
 import java.util.stream.Collectors;

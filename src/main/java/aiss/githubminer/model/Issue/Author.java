@@ -62,7 +62,7 @@ public class  Author {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Assignee.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("login");
         sb.append('=');
         sb.append(((this.username == null)?"<null>":this.username));

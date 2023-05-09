@@ -173,7 +173,6 @@ public class Issue {
         sb.append("user");
         sb.append('=');
         sb.append(((this.author == null)?"<null>":this.author));
-
         sb.append(',');
         sb.append("reactions");
         sb.append('=');

@@ -1,5 +1,5 @@
 
-package aiss.githubminer.model;
+package aiss.githubminer.model.comment;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,12 +11,14 @@ public class Comment {
     private String id;
     @JsonProperty("body")
     private String body;
+
+    @JsonProperty("user")
+    private Author author;
+
     @JsonProperty("created_at")
     private String createdAt;
     @JsonProperty("updated_at")
     private String updatedAt;
-
-    //TODO: Falta atributo author
 
     @JsonProperty("id")
     public String getId() {
@@ -36,6 +38,15 @@ public class Comment {
     @JsonProperty("body")
     public void setBody(String body) {
         this.body = body;
+    }
+
+    @JsonProperty("user")
+    public Author getAuthor() {
+        return author;
+    }
+    @JsonProperty("user")
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @JsonProperty("created_at")
@@ -68,6 +79,10 @@ public class Comment {
         sb.append("body");
         sb.append('=');
         sb.append(((this.body == null)?"<null>":this.body));
+        sb.append(',');
+        sb.append("user");
+        sb.append('=');
+        sb.append(((this.author == null)?"<null>":this.author));
         sb.append(',');
         sb.append("createdAt");
         sb.append('=');

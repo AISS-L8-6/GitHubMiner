@@ -1,20 +1,10 @@
 package aiss.githubminer.controller;
 
-import aiss.githubminer.model.Comment;
-import aiss.githubminer.model.Issue.Issue;
-import aiss.githubminer.model.Project;
-import aiss.githubminer.model.commit.Commit;
-import aiss.githubminer.model.parse.CommentParse;
-import aiss.githubminer.model.parse.IssueParse;
-import aiss.githubminer.model.parse.ProjectParse;
-import aiss.githubminer.model.parse.UserParse;
 import aiss.githubminer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
 @RestController
 public class projectController {
 

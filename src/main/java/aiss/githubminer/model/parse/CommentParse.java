@@ -2,7 +2,7 @@ package aiss.githubminer.model.parse;
 
 
 
-import aiss.githubminer.model.Comment;
+import aiss.githubminer.model.comment.Comment;
 
 public class CommentParse {
     //TODO: necesita un User

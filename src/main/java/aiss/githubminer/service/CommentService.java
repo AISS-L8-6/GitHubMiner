@@ -1,6 +1,6 @@
 package aiss.githubminer.service;
 
-import aiss.githubminer.model.Comment;
+import aiss.githubminer.model.comment.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

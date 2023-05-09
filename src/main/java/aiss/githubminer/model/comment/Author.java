@@ -1,4 +1,4 @@
-package aiss.githubminer.model;
+package aiss.githubminer.model.comment;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class  Author {
     @JsonProperty("login")
     private String username;
     @JsonProperty("id")
@@ -16,8 +16,7 @@ public class User {
     private String avatarUrl;
     @JsonProperty("url")
     private String web_url;
-    @JsonProperty("name")
-    private String name;
+
 
     @JsonProperty("login")
     public String getUsername() {
@@ -26,7 +25,7 @@ public class User {
 
     @JsonProperty("login")
     public void setUsername(String username) {
-        this.username = username;
+        this.username= username;
     }
 
     @JsonProperty("id")
@@ -39,7 +38,6 @@ public class User {
         this.id = id;
     }
 
-
     @JsonProperty("avatar_url")
     public String getAvatarUrl() {
         return avatarUrl;
@@ -49,6 +47,7 @@ public class User {
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
+
 
     @JsonProperty("url")
     public String getWeb_url() {
@@ -60,20 +59,10 @@ public class User {
         this.web_url = web_url;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
-
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(User.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("login");
         sb.append('=');
         sb.append(((this.username == null)?"<null>":this.username));
@@ -89,10 +78,6 @@ public class User {
         sb.append("url");
         sb.append('=');
         sb.append(((this.web_url == null)?"<null>":this.web_url));
-        sb.append(',');
-        sb.append("name");
-        sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
