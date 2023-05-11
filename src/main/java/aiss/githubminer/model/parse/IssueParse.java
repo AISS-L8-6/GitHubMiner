@@ -56,4 +56,116 @@ public class IssueParse {
         this.author = author;
         this.assignee = assignee;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getRef_id() {
+        return ref_id;
+    }
+
+    public void setRef_id(String ref_id) {
+        this.ref_id = ref_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getUpdate_at() {
+        return update_at;
+    }
+
+    public void setUpdate_at(String update_at) {
+        this.update_at = update_at;
+    }
+
+    public String getClosed_at() {
+        return closed_at;
+    }
+
+    public void setClosed_at(String closed_at) {
+        this.closed_at = closed_at;
+    }
+
+    public List<String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<String> labels) {
+        this.labels = labels;
+    }
+
+    public Integer getUpvotes() {
+        return upvotes;
+    }
+
+    public void setUpvotes(Integer upvotes) {
+        this.upvotes = upvotes;
+    }
+
+    public Integer getDownvotes() {
+        return downvotes;
+    }
+
+    public void setDownvotes(Integer downvotes) {
+        this.downvotes = downvotes;
+    }
+
+    public List<CommentParse> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentParse> comments) {
+        this.comments = comments;
+    }
+
+    public UserParse getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserParse author) {
+        this.author = author;
+    }
+
+    public UserParse getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(UserParse assignee) {
+        this.assignee = assignee;
+    }
 }
