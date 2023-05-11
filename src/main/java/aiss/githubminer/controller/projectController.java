@@ -36,14 +36,14 @@ public class projectController {
 
 
 
-        @GetMapping("/gitHubMiner/project/{owner}/{repoName}")
-        public ProjectParse getByOwnerRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits") Integer sinceCommits, @RequestParam(name = "sinceIssues") Integer sinceIssues, @RequestParam(name = "maxPages") Integer maxPages) {
+        @GetMapping("/apipath/project/{owner}/{repoName}")
+        public ProjectParse getByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false) Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false) Integer sinceIssues, @RequestParam(name = "maxPages", required = false) Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();
-            Project project = projectService.getProjectByUserRepo(owner,repoName);
-            List<Issue> issueList = issueService.findAllIssueByOwnerAndRepository(owner, repoName);
-            List<Commit> commitList = commitService.findAllCommit(owner,repoName,sinceCommits,maxPages);
+            Project project = projectService.getProjectByUserRepo(owner, repoName);
+            List<Issue> issueList = issueService.findAllIssueByOwnerAndRepository(owner, repoName, sinceIssues, maxPages);
+            List<Commit> commitList = commitService.findAllCommit(owner, repoName, sinceCommits, maxPages);
             for (int i = 0; i < issueList.size(); i++) {
                     UserParse author = new UserParse(issueList.get(i).getAuthor());
                     UserParse assignee = new UserParse(issueList.get(i).getAssignee());
@@ -65,9 +65,9 @@ public class projectController {
             result =  new ProjectParse(project,commitParses,issueParses);
             return result;
         }
+/*
 
-
-        @PostMapping("/gitHubMiner/project/{owner}/{repoName}")
+        @PostMapping("/apipath/project/{owner}/{repoName}")
         public ProjectParse postByOwnerRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits") Integer sinceCommits, @RequestParam(name = "sinceIssues") Integer sinceIssues, @RequestParam(name = "maxPages") Integer maxPages) {
                 ProjectParse result;
                 List<IssueParse> issueParses = new ArrayList<>();
@@ -98,6 +98,6 @@ public class projectController {
             return restTemplate.postForObject("http://localhost:8080/gitminer/projects", result, ProjectParse.class);
         }
 
-
+*/
 
     }
