@@ -36,6 +36,16 @@ public class Issue {
     private String created_at;
     @JsonProperty("updatedAt")
     private String updated_at;
+    @JsonProperty("number")
+    private String number;
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
     @JsonProperty("id")
     public String getId() {

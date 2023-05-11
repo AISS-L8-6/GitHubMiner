@@ -20,16 +20,13 @@ public class CommentParse {
             this.updated_at = updated_at;
             this.author = author;
         }
-
-        public CommentParse(Comment comment) {
-                this.id = comment.getId();
-                this.body = comment.getBody();
-                this.created_at = comment.getCreatedAt();
-                this.updated_at = comment.getUpdatedAt();
-                this.author = new UserParse(comment.getAuthor());
-
+        public CommentParse(Comment comment, UserParse author){
+            this.id = comment.getId();
+            this.body = comment.getBody();
+            this.created_at = comment.getCreatedAt();
+            this.updated_at = comment.getUpdatedAt();
+            this.author = author;
         }
-
     public String getId() {
         return id;
     }

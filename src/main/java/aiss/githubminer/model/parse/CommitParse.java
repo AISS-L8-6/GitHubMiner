@@ -17,10 +17,10 @@ public class CommitParse {
     private String web_url;
 
 
-    public CommitParse(Author author, Commit commit, Committer committer){
+    public CommitParse(Author author, Commit commit, Committer committer, String title, String message){
         this.id = commit.getId();
-        this.title = getTitle(commit.getTitleAndMessage());
-        this.message = getMessage(commit.getTitleAndMessage());
+        this.title = title;
+        this.message = message;
         this.author_name = author.getName();
         this.author_email = author.getEmail();
         this.authored_date = author.getDate();

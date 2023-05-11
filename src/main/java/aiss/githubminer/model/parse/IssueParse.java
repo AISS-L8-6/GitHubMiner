@@ -22,7 +22,7 @@ public class IssueParse {
     private UserParse assignee;
 
 
-    public IssueParse(Issue issue, List<CommentParse> comments){
+    public IssueParse(Issue issue, UserParse author, UserParse assignee, List<CommentParse> comments){
         this.id = issue.getId();
         this.ref_id = issue.getRefId();
         this.title = issue.getTitle();
@@ -35,8 +35,8 @@ public class IssueParse {
         this.upvotes = issue.getReactions().getUpvotes();
         this.downvotes = issue.getReactions().getDownvotes();
         this.comments = comments;
-        this.author = new UserParse(issue.getAuthor());
-        this.assignee = new UserParse(issue.getAssignee());
+        this.author = author;
+        this.assignee = assignee;
 
     }
 

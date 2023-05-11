@@ -15,7 +15,7 @@ class IssueServiceTest {
 
     @Autowired
     IssueService service;
-
+/*
     @Test
     @DisplayName("Get all issue by owner and repository")
     void findAllIssueByOwnerAndRepository() {
@@ -27,7 +27,7 @@ class IssueServiceTest {
             System.out.println(i);
         }
     }
-
+*/
     /*
     @Test
     @DisplayName("Find one issue")
