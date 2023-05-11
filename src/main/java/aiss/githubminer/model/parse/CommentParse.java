@@ -27,6 +27,10 @@ public class CommentParse {
             this.updated_at = comment.getUpdatedAt();
             this.author = author;
         }
+
+        public CommentParse(){
+
+        }
     public String getId() {
         return id;
     }
