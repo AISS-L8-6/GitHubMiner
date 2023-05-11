@@ -67,11 +67,10 @@ public class IssueService {
 
         HttpEntity<Reactions[]> request = new HttpEntity<>(null, headers);
         ResponseEntity<Reactions[]> response = restTemplate
-                .exchange("/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=+1", HttpMethod.GET, request, Reactions[].class);
+                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=+1", HttpMethod.GET, request, Reactions[].class);
         List<Reactions> result = new ArrayList<>();
         return result.size();
     }
-
     public Integer findDownvotesByIssue(String owner, String repo, String issueNumber){
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {
@@ -80,7 +79,7 @@ public class IssueService {
 
         HttpEntity<Reactions[]> request = new HttpEntity<>(null, headers);
         ResponseEntity<Reactions[]> response = restTemplate
-                .exchange("/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=-1", HttpMethod.GET, request, Reactions[].class);
+                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=-1", HttpMethod.GET, request, Reactions[].class);
         List<Reactions> result = new ArrayList<>();
         return result.size();
     }

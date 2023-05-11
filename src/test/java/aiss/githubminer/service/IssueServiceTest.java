@@ -42,6 +42,17 @@ class IssueServiceTest {
             System.out.println(issues.get(i));
         }
     }
+
+    @Test
+    @DisplayName("Upvotes")
+    void getUpvotes(){
+        String owner = "ytdl-org";
+        String repository = "youtube-dl";
+        String isuue_ref = "4554";
+        Integer result = service.findUpvotesByIssue(owner, repository, isuue_ref);
+        assertTrue(!result.equals(null), "upvotes is empty");
+        System.out.println(result);
+    }
 /*
     @Test
     void getIssueByProjectAndState() {
