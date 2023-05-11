@@ -46,6 +46,8 @@ public class projectController {
             List<Commit> commitList = commitService.findAllCommit(owner, repoName, sinceCommits, maxPages);
             for (int i = 0; i < issueList.size(); i++) {
                 String authorIssueUsername = issueList.get(i).getAuthor().getUsername();
+                Integer upvotes = issueService.findUpvotesByIssue(owner, repoName, issueList.get(i).getId());
+                Integer downvotes = issueService.findDownvotesByIssue(owner, repoName, issueList.get(i).getId());
                 UserParse assignee = null;
                 if (issueList.get(i).getAssignee() != null) {
                     String assigneeIssueUsername = issueList.get(i).getAssignee().getUsername();
@@ -61,7 +63,7 @@ public class projectController {
                     commentParses.add(commentParse);
                 }
 
-                IssueParse issueParse = new IssueParse(issueList.get(i), author, assignee, commentParses);
+                IssueParse issueParse = new IssueParse(issueList.get(i), author, assignee, commentParses, upvotes, downvotes);
                 issueParses.add(issueParse);
             }
             for (int i = 0; i < commitList.size(); i++) {
@@ -73,16 +75,16 @@ public class projectController {
                    }else {
                        commitParse = new CommitParse(commitList.get(i).getAuthor(), commitList.get(i), commitList.get(i).getCommitter(), titleAndMessage[0], titleAndMessage[1]);
                    }
-                   commitParses.add(commitParse);
                }else {
                    commitParse = new CommitParse(commitList.get(i).getAuthor(), commitList.get(i), commitList.get(i).getCommitter(),null,null);
                }
+               commitParses.add(commitParse);
             }
             result =  new ProjectParse(project,commitParses,issueParses);
             return result;
         }
 
-
+/*
         @PostMapping("/apipath/project/{owner}/{repoName}")
         public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false) Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false) Integer sinceIssues, @RequestParam(name = "maxPages", required = false) Integer maxPages) {
             ProjectParse result;
@@ -129,7 +131,7 @@ public class projectController {
 
             return restTemplate.postForObject("http://localhost:8080/gitminer/projects", result, ProjectParse.class);
         }
-
+*/
 
 
     }

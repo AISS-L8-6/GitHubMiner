@@ -28,18 +28,21 @@ class IssueServiceTest {
         }
     }
 */
-    /*
+
     @Test
     @DisplayName("Find one issue")
-    void getIssueById() {
+    void getAllIssueByOwnerAndRepository() {
         String owner = "ytdl-org";
         String repository = "youtube-dl";
-        String issueId = "41";
-        Issue issue = service.getIssueById(owner, repository, issueId);
-        assertTrue(!issue.equals(null), "issue is empty");
-        System.out.println(issue);
+        Integer sinceCommits = 10;
+        Integer maxPages = 2;
+        List<Issue> issues = service.findAllIssueByOwnerAndRepository(owner, repository, sinceCommits, maxPages);
+        assertTrue(!issues.equals(null), "issue is empty");
+        for(int i = 0; i < issues.size(); i++){
+            System.out.println(issues.get(i));
+        }
     }
-
+/*
     @Test
     void getIssueByProjectAndState() {
         String owner = "ytdl-org";

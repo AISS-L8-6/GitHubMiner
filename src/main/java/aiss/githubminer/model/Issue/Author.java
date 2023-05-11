@@ -16,8 +16,7 @@ public class  Author {
     private String avatarUrl;
     @JsonProperty("url")
     private String web_url;
-
-
+    
     @JsonProperty("login")
     public String getUsername() {
         return username;

@@ -14,7 +14,7 @@ public class Issue {
     @JsonProperty("id")
     private String id;
     @JsonProperty("nodeId")
-    private String ref_id;
+    private String nodeId;
     @JsonProperty("state")
     private String state;
     @JsonProperty("title")
@@ -23,18 +23,15 @@ public class Issue {
     private String description;
     @JsonProperty("user")
     private Author author;
-    @JsonProperty("reactions")
-    private Reactions reactions;
     @JsonProperty("labels")
     private List<Label> labels;
-
     @JsonProperty("assignee")
     private Assignee assignee;
-    @JsonProperty("closedAt")
+    @JsonProperty("closed_at")
     private String closed_at;
-    @JsonProperty("createdAt")
+    @JsonProperty("created_at")
     private String created_at;
-    @JsonProperty("updatedAt")
+    @JsonProperty("updated_at")
     private String updated_at;
     @JsonProperty("number")
     private String number;
@@ -57,14 +54,14 @@ public class Issue {
         this.id = id;
     }
 
-    @JsonProperty("refId")
+    @JsonProperty("nodeId")
     public String getRefId() {
-        return ref_id;
+        return nodeId;
     }
 
-    @JsonProperty("refId")
-    public void setRefId(String refId) {
-        this.ref_id = refId;
+    @JsonProperty("nodeId")
+    public void setRefId(String nodeId) {
+        this.nodeId = nodeId;
     }
 
     @JsonProperty("state")
@@ -116,33 +113,23 @@ public class Issue {
         this.labels = labels;
     }
 
-    @JsonProperty("reactions")
-    public Reactions getReactions() {
-        return reactions;
-    }
-
-    @JsonProperty("reactions")
-    public void setReactions(Reactions reactions) {
-        this.reactions = reactions;
-    }
-
     @JsonProperty("closed_at")
-    public String getClosedAt() {
+    public String getClosed_At() {
         return closed_at;
     }
 
     @JsonProperty("closed_at")
-    public void setClosedAt(String closed_at) {
+    public void setClosed_at(String closed_at) {
         this.closed_at = closed_at;
     }
 
-    @JsonProperty("createdAt")
-    public String getCreatedAt() {
+    @JsonProperty("created_at")
+    public String getCreated_at() {
         return created_at;
     }
 
-    @JsonProperty("createdAt")
-    public void setCreatedAt(String created_at) {
+    @JsonProperty("created_at")
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
@@ -152,8 +139,8 @@ public class Issue {
     }
 
     @JsonProperty("updatedAt")
-    public void setUpdatedAt(String updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(String updatedAt) {
+        this.updated_at = updatedAt;
     }
 
     @JsonProperty("assignee")
@@ -176,7 +163,7 @@ public class Issue {
         sb.append(',');
         sb.append("nodeId");
         sb.append('=');
-        sb.append(((this.ref_id == null)?"<null>":this.ref_id));
+        sb.append(((this.nodeId == null)?"<null>":this.nodeId));
         sb.append(',');
         sb.append("state");
         sb.append('=');
@@ -194,9 +181,6 @@ public class Issue {
         sb.append('=');
         sb.append(((this.author == null)?"<null>":this.author));
         sb.append(',');
-        sb.append("reactions");
-        sb.append('=');
-        sb.append(((this.reactions == null)?"<null>":this.reactions));
         sb.append("labels");
         sb.append('=');
         sb.append(((this.labels == null)?"<null>":this.labels));

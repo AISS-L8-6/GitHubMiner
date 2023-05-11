@@ -1,6 +1,7 @@
 package aiss.githubminer.service;
 
 import aiss.githubminer.model.Issue.Issue;
+import aiss.githubminer.model.Issue.Reactions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -56,6 +57,32 @@ public class IssueService {
         result.addAll(Arrays.asList(response.getBody()));
 
         return result;
+    }
+
+    public Integer findUpvotesByIssue(String owner, String repo, String issueNumber){
+        HttpHeaders headers = new HttpHeaders();
+        if(token != "") {
+            headers.set("Authorization", "Bearer " + token);
+        }
+
+        HttpEntity<Reactions[]> request = new HttpEntity<>(null, headers);
+        ResponseEntity<Reactions[]> response = restTemplate
+                .exchange("/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=+1", HttpMethod.GET, request, Reactions[].class);
+        List<Reactions> result = new ArrayList<>();
+        return result.size();
+    }
+
+    public Integer findDownvotesByIssue(String owner, String repo, String issueNumber){
+        HttpHeaders headers = new HttpHeaders();
+        if(token != "") {
+            headers.set("Authorization", "Bearer " + token);
+        }
+
+        HttpEntity<Reactions[]> request = new HttpEntity<>(null, headers);
+        ResponseEntity<Reactions[]> response = restTemplate
+                .exchange("/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=-1", HttpMethod.GET, request, Reactions[].class);
+        List<Reactions> result = new ArrayList<>();
+        return result.size();
     }
 
 }

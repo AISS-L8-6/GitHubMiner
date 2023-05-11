@@ -12,7 +12,7 @@ public class IssueParse {
     private String description;
     private String state;
     private String created_at;
-    private String update_at;
+    private String updated_at;
     private String closed_at;
     private List<String> labels;
     private Integer upvotes;
@@ -22,18 +22,18 @@ public class IssueParse {
     private UserParse assignee;
 
 
-    public IssueParse(Issue issue, UserParse author, UserParse assignee, List<CommentParse> comments){
+    public IssueParse(Issue issue, UserParse author, UserParse assignee, List<CommentParse> comments, Integer upvotes, Integer downvotes){
         this.id = issue.getId();
         this.ref_id = issue.getRefId();
         this.title = issue.getTitle();
         this.description = issue.getDescription();
         this.state = issue.getState();
-        this.created_at = issue.getCreatedAt();
-        this.update_at = issue.getUpdatedAt();
-        this.closed_at = issue.getClosedAt();
+        this.created_at = issue.getCreated_at();
+        this.updated_at = issue.getUpdatedAt();
+        this.closed_at = issue.getClosed_At();
         this.labels = issue.getLabels().stream().map(x -> x.toString()).collect(Collectors.toList());
-        this.upvotes = issue.getReactions().getUpvotes();
-        this.downvotes = issue.getReactions().getDownvotes();
+        this.upvotes = upvotes;
+        this.downvotes = downvotes;
         this.comments = comments;
         this.author = author;
         this.assignee = assignee;
@@ -47,7 +47,7 @@ public class IssueParse {
         this.description = description;
         this.state = state;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = update_at;
         this.closed_at = closed_at;
         this.labels = labels;
         this.upvotes = upvotes;
@@ -109,12 +109,12 @@ public class IssueParse {
         this.created_at = created_at;
     }
 
-    public String getUpdate_at() {
-        return update_at;
+    public String getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdate_at(String update_at) {
-        this.update_at = update_at;
+    public void setUpdated_at(String update_at) {
+        this.updated_at = update_at;
     }
 
     public String getClosed_at() {
