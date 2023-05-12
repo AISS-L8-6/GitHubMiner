@@ -30,6 +30,19 @@ public class CommitParse {
         this.web_url = commit.getUrl();
     }
 
+    public CommitParse(Commit commit){
+        this.id = commit.getId();
+        this.title = getTitle(commit.getCommit().getMessage());
+        this.message = getMessage(commit.getCommit().getMessage());
+        this.author_name = commit.getCommit().getAuthor().getName();
+        this.author_email = commit.getCommit().getAuthor().getEmail();
+        this.authored_date = commit.getCommit().getAuthor().getDate();
+        this.committer_name = commit.getCommit().getCommitter().getName();
+        this.committer_email = commit.getCommit().getCommitter().getEmail();
+        this.committed_date = commit.getCommit().getCommitter().getDate();
+        this.web_url = commit.getUrl();
+    }
+
     public CommitParse(String id, String title, String message, String author_name, String author_email, String authored_date, String committer_name, String committer_email, String committed_date, String web_url) {
         this.id = id;
         this.title = title;

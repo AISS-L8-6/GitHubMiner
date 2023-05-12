@@ -68,15 +68,15 @@ public class projectController {
             }
             for (int i = 0; i < commitList.size(); i++) {
                 CommitParse commitParse = null;
-               if(commitList.get(i).getTitleAndMessage() != null){
-                   String[] titleAndMessage = commitList.get(i).getTitleAndMessage().split("/n/n");
+               if(commitList.get(i).getCommit().getMessage() != null){
+                   String[] titleAndMessage = commitList.get(i).getCommit().getMessage().split("/n/n");
                    if (titleAndMessage.length == 1){
-                       commitParse = new CommitParse(commitList.get(i).getAuthor(),commitList.get(i),commitList.get(i).getCommitter(),titleAndMessage[0],null);
+                       commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(),commitList.get(i),commitList.get(i).getCommit().getCommitter(),titleAndMessage[0],null);
                    }else {
-                       commitParse = new CommitParse(commitList.get(i).getAuthor(), commitList.get(i), commitList.get(i).getCommitter(), titleAndMessage[0], titleAndMessage[1]);
+                       commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(), commitList.get(i), commitList.get(i).getCommit().getCommitter(), titleAndMessage[0], titleAndMessage[1]);
                    }
                }else {
-                   commitParse = new CommitParse(commitList.get(i).getAuthor(), commitList.get(i), commitList.get(i).getCommitter(),null,null);
+                   commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(), commitList.get(i), commitList.get(i).getCommit().getCommitter(),null,null);
                }
                commitParses.add(commitParse);
             }
@@ -116,15 +116,15 @@ public class projectController {
             }
             for (int i = 0; i < commitList.size(); i++) {
                 CommitParse commitParse = null;
-               if(commitList.get(i).getTitleAndMessage() != null){
-                   String[] titleAndMessage = commitList.get(i).getTitleAndMessage().split("/n/n");
+               if(commitList.get(i).getCommit().getMessage() != null){
+                   String[] titleAndMessage = commitList.get(i).getCommit().getMessage().split("/n/n");
                    if (titleAndMessage.length == 1){
-                       commitParse = new CommitParse(commitList.get(i).getAuthor(),commitList.get(i),commitList.get(i).getCommitter(),titleAndMessage[0],null);
+                       commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(),commitList.get(i),commitList.get(i).getCommit().getCommitter(),titleAndMessage[0],null);
                    }else {
-                       commitParse = new CommitParse(commitList.get(i).getAuthor(), commitList.get(i), commitList.get(i).getCommitter(), titleAndMessage[0], titleAndMessage[1]);
+                       commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(), commitList.get(i), commitList.get(i).getCommit().getCommitter(), titleAndMessage[0], titleAndMessage[1]);
                    }
                }else {
-                   commitParse = new CommitParse(commitList.get(i).getAuthor(), commitList.get(i), commitList.get(i).getCommitter(),null,null);
+                   commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(), commitList.get(i), commitList.get(i).getCommit().getCommitter(),null,null);
                }
                commitParses.add(commitParse);
             }
