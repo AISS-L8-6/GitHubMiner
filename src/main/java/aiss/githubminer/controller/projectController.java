@@ -37,7 +37,7 @@ public class projectController {
 
 
         @GetMapping("/apipath/project/{owner}/{repoName}")
-        public ProjectParse getByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue ="20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue ="2") Integer maxPages) {
+        public ProjectParse getByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue ="20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue ="1") Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();
@@ -70,7 +70,7 @@ public class projectController {
             for (int i = 0; i < commitList.size(); i++) {
                 CommitParse commitParse = null;
                if(commitList.get(i).getCommit().getMessage() != null){
-                   String[] titleAndMessage = commitList.get(i).getCommit().getMessage().split("/n/n");
+                   String[] titleAndMessage = commitList.get(i).getCommit().getMessage().split("\n\n");     //podria separarse con \n pero en la practica nos indicaron de hacerlo con \n\n
                    if (titleAndMessage.length == 1){
                        commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(),commitList.get(i),commitList.get(i).getCommit().getCommitter(),titleAndMessage[0],null);
                    }else {
@@ -86,7 +86,7 @@ public class projectController {
         }
 
         @PostMapping("/apipath/project/{owner}/{repoName}")
-        public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue = "2") Integer maxPages) {
+        public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue = "1") Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();

@@ -58,12 +58,12 @@ public class CommitParse {
     }
 
     private String getMessage(String titleAndMessage) {
-        String[] partes = titleAndMessage.split("\n\n");
+        String[] partes = titleAndMessage.split("\n");
         return partes[0];
     }
 
     private String getTitle(String titleAndMessage) {
-        String[] partes = titleAndMessage.split("\n\n");
+        String[] partes = titleAndMessage.split("\n");
         return partes[1];
     }
 
