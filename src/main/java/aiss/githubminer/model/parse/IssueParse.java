@@ -31,7 +31,7 @@ public class IssueParse {
         this.created_at = issue.getCreated_at();
         this.updated_at = issue.getUpdatedAt();
         this.closed_at = issue.getClosed_At();
-        this.labels = issue.getLabels().stream().map(x -> x.getId().toString() + x.getName().toString()).toList();
+        this.labels = issue.getLabels().stream().map(x -> "id: " + x.getId().toString() + " name: "+  x.getName().toString()).toList();
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.comments = comments;
