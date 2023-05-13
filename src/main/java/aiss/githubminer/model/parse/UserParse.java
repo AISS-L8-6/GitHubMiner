@@ -29,6 +29,8 @@ public class UserParse {
         this.web_url = user.getWeb_url();
     }
 
+    public UserParse(){}
+
     public String getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package aiss.githubminer.service;
 
 import aiss.githubminer.model.commit.Commit;
+import aiss.githubminer.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -27,22 +28,9 @@ public class CommitService {
     private final LocalDateTime sinceCommits = LocalDateTime.now().minusDays(2);
     private final String maxPages = "2";
 
-    public List<Commit> findAllCommit(String owner,String repo, Integer sinceCommits, Integer page) throws HttpClientErrorException {
+    public List<Commit> findAllCommit(String owner,String repo, Integer sinceCommits, Integer maxPages) throws HttpClientErrorException {
 
-        String url = "https://api.github.com/repos/" + owner + "/" + repo + "/commits?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&?page=" + page;
-
-        /* String nextPageURL= Util.getNextPageURL(response.getHeaders());
-        int page=2;
-        while (nextPageURL != null && page <= maxPages){
-            logger.debug("Retrieving commits form page"+ page+":"+nextPageURL);
-            response = getCommits(nextPageURL);
-            pageCommits=Arrays.stream(response.getBody()).toList();
-            logger.debug(pageCommits.size()+"commits retrieved.");
-            commits.addAll(pageCommits);
-            nextPageURL= Util.getNextPaggeUrl(response.getHeaders());
-            page++;
-        }
-        */
+        String url = "https://api.github.com/repos/" + owner + "/" + repo + "/commits?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&?page=" + 1;
 
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {
@@ -54,6 +42,13 @@ public class CommitService {
 
         List<Commit> result = new ArrayList<>();
         result.addAll(Arrays.asList(response.getBody()));
+
+        String nextPageUrl = Utils.getNextPageUrl(response.getHeaders());
+        for(int i = 0; i <= maxPages && nextPageUrl != null; i++){
+            response = restTemplate.exchange(nextPageUrl, HttpMethod.GET, request, Commit[].class);
+            result.addAll(Arrays.asList(response.getBody()));
+            nextPageUrl = Utils.getNextPageUrl(response.getHeaders());
+        }
 
         return result;
     }

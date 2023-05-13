@@ -57,9 +57,7 @@ public class IssueParse {
         this.assignee = assignee;
     }
 
-    public IssueParse(){
-
-    }
+    public IssueParse(){}
 
     public String getId() {
         return id;

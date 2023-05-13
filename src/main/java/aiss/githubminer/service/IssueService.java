@@ -2,6 +2,7 @@ package aiss.githubminer.service;
 
 import aiss.githubminer.model.Issue.Issue;
 import aiss.githubminer.model.Issue.Reaction;
+import aiss.githubminer.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -27,7 +28,7 @@ public class IssueService {
 
 
     public List<Issue> findAllIssueByOwnerAndRepository(String owner, String repository, Integer sinceCommits, Integer maxPages) throws HttpClientErrorException{
-        String url = "https://api.github.com/repos/" + owner + "/" + repository + "/issues?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&" + "?page=" + maxPages;
+        String url = "https://api.github.com/repos/" + owner + "/" + repository + "/issues?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&" + "?page=" + 1;
 
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {
@@ -40,6 +41,13 @@ public class IssueService {
 
         List<Issue> result = new ArrayList<>();
         result.addAll(Arrays.asList(response.getBody()));
+
+        String nextPageUrl = Utils.getNextPageUrl(response.getHeaders());
+        for(int i = 0; i <= maxPages && nextPageUrl != null; i++){
+            response = restTemplate.exchange(nextPageUrl, HttpMethod.GET, request, Issue[].class);
+            result.addAll(Arrays.asList(response.getBody()));
+            nextPageUrl = Utils.getNextPageUrl(response.getHeaders());
+        }
 
         return result;
     }

@@ -57,6 +57,8 @@ public class CommitParse {
         this.web_url = web_url;
     }
 
+    public CommitParse(){}
+
     private String getMessage(String titleAndMessage) {
         String[] partes = titleAndMessage.split("\n");
         return partes[0];

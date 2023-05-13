@@ -28,9 +28,8 @@ public class CommentParse {
             this.author = author;
         }
 
-        public CommentParse(){
+        public CommentParse(){}
 
-        }
     public String getId() {
         return id;
     }
