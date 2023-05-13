@@ -15,19 +15,6 @@ class IssueServiceTest {
 
     @Autowired
     IssueService service;
-/*
-    @Test
-    @DisplayName("Get all issue by owner and repository")
-    void findAllIssueByOwnerAndRepository() {
-        String owner = "ytdl-org";
-        String repository = "youtube-dl";
-        List<Issue> issues = service.findAllIssueByOwnerAndRepository(owner, repository);
-        assertTrue(!issues.isEmpty(), "list of issue is empty");
-        for(Issue i:issues){
-            System.out.println(i);
-        }
-    }
-*/
 
     @Test
     @DisplayName("Find one issue")
@@ -46,24 +33,23 @@ class IssueServiceTest {
     @Test
     @DisplayName("Upvotes")
     void getUpvotes(){
-        String owner = "ytdl-org";
-        String repository = "youtube-dl";
-        String isuue_ref = "4554";
+        String owner = "octocat";
+        String repository = "Hello-World";
+        String isuue_ref = "1";
         Integer result = service.findUpvotesByIssue(owner, repository, isuue_ref);
         assertTrue(!result.equals(null), "upvotes is empty");
         System.out.println(result);
     }
-/*
+
     @Test
-    void getIssueByProjectAndState() {
-        String owner = "ytdl-org";
-        String repository = "youtube-dl";
-        String state = "closed";
-        List<Issue> issues = service.getIssueByProjectAndState(owner, repository, state);
-        assertTrue(!issues.isEmpty(), "list of issue is empty");
-        for (Issue i : issues) {
-            System.out.println(i);
-        }
+    @DisplayName("Downvotes")
+    void getDownvotes(){
+        String owner = "octocat";
+        String repository = "Hello-World";
+        String issue_ref = "1347";
+        Integer result = service.findUpvotesByIssue(owner, repository, issue_ref);
+        assertTrue(!result.equals(null), "upvotes is empty");
+        System.out.println(result);
     }
-     */
+
 }
