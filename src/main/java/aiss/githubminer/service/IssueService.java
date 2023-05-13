@@ -27,7 +27,7 @@ public class IssueService {
 
 
     public List<Issue> findAllIssueByOwnerAndRepository(String owner, String repository, Integer sinceCommits, Integer maxPages) throws HttpClientErrorException{
-        String url = "https://api.github.com/repos/" + owner + "/" + repository + "/issues?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&" + "?maxPages=" + maxPages;
+        String url = "https://api.github.com/repos/" + owner + "/" + repository + "/issues?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&" + "?page=" + maxPages;
 
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {

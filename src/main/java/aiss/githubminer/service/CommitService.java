@@ -27,9 +27,9 @@ public class CommitService {
     private final LocalDateTime sinceCommits = LocalDateTime.now().minusDays(2);
     private final String maxPages = "2";
 
-    public List<Commit> findAllCommit(String owner,String repo, Integer sinceCommits, Integer per_page) throws HttpClientErrorException {
+    public List<Commit> findAllCommit(String owner,String repo, Integer sinceCommits, Integer page) throws HttpClientErrorException {
 
-        String url = "https://api.github.com/repos/" + owner + "/" + repo + "/commits?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&?per_page=" + per_page;
+        String url = "https://api.github.com/repos/" + owner + "/" + repo + "/commits?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&?page=" + page;
 
         /* String nextPageURL= Util.getNextPageURL(response.getHeaders());
         int page=2;
