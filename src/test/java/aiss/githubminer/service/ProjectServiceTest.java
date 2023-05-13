@@ -25,16 +25,15 @@ public class ProjectServiceTest {
             System.out.println(p);
         }
     }
-
+  */
     @Test
-    @DisplayName("Get project by id")
-    void getProjectById() {
-        String id = "29";
-        Project project = service.getProjectById(id);
+    @DisplayName("Get project by user and repo")
+    void getProjectByUserAndRepo() {
+        String owner = "octocat";
+        String repo = "Hello-World";
+        Project project = service.getProjectByUserRepo(owner, repo);
         assertTrue(!project.equals(null), "project is empty");
         System.out.println(project);
     }
-
-     */
 }
 
