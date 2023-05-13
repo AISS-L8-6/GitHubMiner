@@ -30,6 +30,7 @@ public class CommitParse {
         this.web_url = commit.getUrl();
     }
 
+
     public CommitParse(Commit commit){
         this.id = commit.getId();
         this.title = getTitle(commit.getCommit().getMessage());

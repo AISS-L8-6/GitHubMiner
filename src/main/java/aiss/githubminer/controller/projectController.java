@@ -95,19 +95,10 @@ public class projectController {
         }
 
         @PostMapping("/apipath/project/{owner}/{repoName}")
-        public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false) Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false) Integer sinceIssues, @RequestParam(name = "maxPages", required = false) Integer maxPages) {
+        public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, "2") Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();
-            if(sinceCommits == null){
-                sinceCommits = 2;
-            }
-            if(sinceIssues == null){
-                sinceIssues = 20;
-            }
-            if(maxPages == null){
-                maxPages = 2;
-            }
 
             Project project = projectService.getProjectByUserRepo(owner, repoName);
             List<Issue> issueList = issueService.findAllIssueByOwnerAndRepository(owner, repoName, sinceIssues, maxPages);
