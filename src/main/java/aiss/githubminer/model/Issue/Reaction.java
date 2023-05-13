@@ -1,8 +1,6 @@
 
 package aiss.githubminer.model.Issue;
 
-import javax.annotation.Generated;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,14 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Reactions {
+public class Reaction {
 
     @JsonProperty("id")
     private String id;
     @JsonProperty("content")
     private  String content;
 
-    public Reactions(String id, String content) {
+    public Reaction(String id, String content) {
         this.id = id;
         this.content = content;
     }

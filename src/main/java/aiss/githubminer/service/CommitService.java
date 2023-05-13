@@ -29,19 +29,7 @@ public class CommitService {
 
     public List<Commit> findAllCommit(String owner,String repo, Integer sinceCommits, Integer per_page) throws HttpClientErrorException {
 
-        String url = "https://api.github.com/repos/"+owner+"/"+repo+"/commits";
-
-        if(sinceCommits.equals(null)) {
-            url.concat("?since=" + this.sinceCommits + "&");
-        }else {
-            url.concat("?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&");
-        }
-        if(per_page.equals(null)) {
-            url.concat("?per_page=" + this.maxPages);
-        }else {
-            url.concat("?per_page=" + per_page);
-        }
-
+        String url = "https://api.github.com/repos/" + owner + "/" + repo + "/commits?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&?per_page=" + per_page;
 
         /* String nextPageURL= Util.getNextPageURL(response.getHeaders());
         int page=2;

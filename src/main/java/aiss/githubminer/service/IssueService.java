@@ -1,7 +1,7 @@
 package aiss.githubminer.service;
 
 import aiss.githubminer.model.Issue.Issue;
-import aiss.githubminer.model.Issue.Reactions;
+import aiss.githubminer.model.Issue.Reaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class IssueService {
@@ -26,27 +25,13 @@ public class IssueService {
     @Value("${token}")
     private String token;
 
-    private final Integer sinceCommits = 2;
-    private final Integer maxPages = 2;
-
 
     public List<Issue> findAllIssueByOwnerAndRepository(String owner, String repository, Integer sinceCommits, Integer maxPages) throws HttpClientErrorException{
-        String url = "https://api.github.com/repos/" + owner + "/" + repository + "/issues";
+        String url = "https://api.github.com/repos/" + owner + "/" + repository + "/issues?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&" + "?maxPages=" + maxPages;
 
         HttpHeaders headers = new HttpHeaders();
         if(token != "") {
             headers.set("Authorization", "Bearer " + token);
-        }
-
-        if(sinceCommits.equals(null)) {
-            url.concat("?since=" + this.sinceCommits + "&");
-        }else {
-            url.concat("?since=" + LocalDateTime.now().minusDays(sinceCommits) + "&");
-        }
-        if(maxPages.equals(null)) {
-            url.concat("?maxPages=" + this.maxPages);
-        }else {
-            url.concat("?maxPages=" + maxPages);
         }
 
         HttpEntity<Issue[]> request = new HttpEntity<>(null, headers);
@@ -64,11 +49,11 @@ public class IssueService {
         if(token != "") {
             headers.set("Authorization", "Bearer " + token);
         }
-
-        HttpEntity<Reactions[]> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Reactions[]> response = restTemplate
-                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=+1", HttpMethod.GET, request, Reactions[].class);
-        List<Reactions> result = new ArrayList<>();
+        HttpEntity<Reaction[]> request = new HttpEntity<>(null, headers);
+        ResponseEntity<Reaction[]> response = restTemplate
+                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=+1", HttpMethod.GET, request, Reaction[].class);
+        List<Reaction> result = new ArrayList<>();
+        result.addAll(Arrays.asList(response.getBody()));
         return result.size();
     }
     public Integer findDownvotesByIssue(String owner, String repo, String issueNumber){
@@ -77,10 +62,11 @@ public class IssueService {
             headers.set("Authorization", "Bearer " + token);
         }
 
-        HttpEntity<Reactions[]> request = new HttpEntity<>(null, headers);
-        ResponseEntity<Reactions[]> response = restTemplate
-                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=-1", HttpMethod.GET, request, Reactions[].class);
-        List<Reactions> result = new ArrayList<>();
+        HttpEntity<Reaction[]> request = new HttpEntity<>(null, headers);
+        ResponseEntity<Reaction[]> response = restTemplate
+                .exchange("https://api.github.com/repos/" + owner + "/" + repo + "/issues/" + issueNumber + "/reactions?content=-1", HttpMethod.GET, request, Reaction[].class);
+        List<Reaction> result = new ArrayList<>();
+        result.addAll(Arrays.asList(response.getBody()));
         return result.size();
     }
 
