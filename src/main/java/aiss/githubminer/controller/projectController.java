@@ -7,6 +7,7 @@ import aiss.githubminer.model.commit.Commit;
 import aiss.githubminer.model.parse.*;
 import aiss.githubminer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -85,6 +86,9 @@ public class projectController {
             return result;
         }
 
+
+
+        @ResponseStatus(HttpStatus.CREATED)
         @PostMapping("/apipath/project/{owner}/{repoName}")
         public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue = "1") Integer maxPages) {
             ProjectParse result;
