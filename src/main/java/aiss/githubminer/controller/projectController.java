@@ -37,11 +37,11 @@ public class projectController {
 
 
         @GetMapping("/apipath/project/{owner}/{repoName}")
-        public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, "2") Integer maxPages) {
+        public ProjectParse getByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue ="20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue ="2") Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();
-            
+
             Project project = projectService.getProjectByUserRepo(owner, repoName);
             List<Issue> issueList = issueService.findAllIssueByOwnerAndRepository(owner, repoName, sinceIssues, maxPages);
             List<Commit> commitList = commitService.findAllCommit(owner, repoName, sinceCommits, maxPages);
@@ -86,7 +86,7 @@ public class projectController {
         }
 
         @PostMapping("/apipath/project/{owner}/{repoName}")
-        public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, "2") Integer maxPages) {
+        public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue = "2") Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();
