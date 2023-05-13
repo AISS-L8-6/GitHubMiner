@@ -10,7 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import io.swagger.v3.oas.annotations.Operation;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +42,15 @@ public class projectController {
         UserService userService;
 
 
-
+    @Operation(
+            summary = "Retrieve a project",
+            description = "Find one project by specifying its owner and repository name",
+            tags = {"get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Success", content = { @Content(schema = @Schema(implementation = projectController.class), mediaType = "application/json")}),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = { @Content(schema = @Schema())})
+    })
         @GetMapping("/apipath/project/{owner}/{repoName}")
         public ProjectParse getByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue ="20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue ="1") Integer maxPages) {
             ProjectParse result;
@@ -87,7 +101,15 @@ public class projectController {
         }
 
 
-
+    @Operation(
+            summary = "Insert a project",
+            description = "Add a new project whose data is built from the GitHub API",
+            tags = {"post"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Success", content = { @Content(schema = @Schema(implementation = projectController.class), mediaType = "application/json")}),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = { @Content(schema = @Schema())})
+    })
         @ResponseStatus(HttpStatus.CREATED)
         @PostMapping("/apipath/project/{owner}/{repoName}")
         public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue = "1") Integer maxPages) {
