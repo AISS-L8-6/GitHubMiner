@@ -6,6 +6,8 @@ import aiss.githubminer.model.comment.Comment;
 import aiss.githubminer.model.commit.Commit;
 import aiss.githubminer.model.parse.*;
 import aiss.githubminer.service.*;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
-
+@Tag(name = "Github Project", description = "Github project management API")
 @RestController
 public class projectController {
 
@@ -52,7 +54,11 @@ public class projectController {
             @ApiResponse(responseCode = "404", description = "Not Found", content = { @Content(schema = @Schema())})
     })
         @GetMapping("/apipath/project/{owner}/{repoName}")
-        public ProjectParse getByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue ="20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue ="1") Integer maxPages) {
+        public ProjectParse getByOwnerAndRepo(@Parameter(description = "Owner of the project to be sent")@PathVariable String owner,
+                                              @Parameter(description = "Repository of the project to be sent") @PathVariable String repoName,
+                                              @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits,
+                                              @RequestParam(name = "sinceIssues", required = false, defaultValue ="20") Integer sinceIssues,
+                                              @RequestParam(name = "maxPages", required = false, defaultValue ="1") Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();
@@ -112,7 +118,9 @@ public class projectController {
     })
         @ResponseStatus(HttpStatus.CREATED)
         @PostMapping("/apipath/project/{owner}/{repoName}")
-        public ProjectParse postByOwnerAndRepo(@PathVariable String owner,@PathVariable String repoName, @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue = "1") Integer maxPages) {
+        public ProjectParse postByOwnerAndRepo(@Parameter(description = "Owner of the project to be sent") @PathVariable String owner,
+                                               @Parameter(description = "Repository of the project to be sent") @PathVariable String repoName,
+                                                @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue = "1") Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();
