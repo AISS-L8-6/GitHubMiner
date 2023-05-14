@@ -20,9 +20,9 @@ class CommitServiceTest {
     @DisplayName("find all commits (no param)")
     void findAllCommit() {
 
-        String owner = "octocat";
-        String repo = "Hello-World";
-        Integer sinceCommits = 2;
+        String owner = "ytdl-org";
+        String repo = "youtube-dl";
+        Integer sinceCommits = 10;
         Integer maxPages     = 2;
         List<Commit> commits = service.findAllCommit(owner, repo, sinceCommits, maxPages);
         assertTrue(!commits.isEmpty(), "list of commits is empty");

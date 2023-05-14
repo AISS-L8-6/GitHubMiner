@@ -24,7 +24,7 @@ public class IssueParse {
 
     public IssueParse(Issue issue, UserParse author, UserParse assignee, List<CommentParse> comments, Integer upvotes, Integer downvotes){
         this.id = issue.getId();
-        this.ref_id = issue.getRefId();
+        this.ref_id = issue.getNumber();
         this.title = issue.getTitle();
         this.description = issue.getDescription();
         this.state = issue.getState();

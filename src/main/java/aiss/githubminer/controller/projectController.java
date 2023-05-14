@@ -58,7 +58,7 @@ public class projectController {
                                               @Parameter(description = "Repository of the project to be sent") @PathVariable String repoName,
                                               @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits,
                                               @RequestParam(name = "sinceIssues", required = false, defaultValue ="20") Integer sinceIssues,
-                                              @RequestParam(name = "maxPages", required = false, defaultValue ="1") Integer maxPages) {
+                                              @RequestParam(name = "maxPages", required = false, defaultValue ="2") Integer maxPages) {
             ProjectParse result;
             List<IssueParse> issueParses = new ArrayList<>();
             List<CommitParse> commitParses = new ArrayList<>();
@@ -120,51 +120,54 @@ public class projectController {
         @PostMapping("/apipath/project/{owner}/{repoName}")
         public ProjectParse postByOwnerAndRepo(@Parameter(description = "Owner of the project to be sent") @PathVariable String owner,
                                                @Parameter(description = "Repository of the project to be sent") @PathVariable String repoName,
-                                                @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits, @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues, @RequestParam(name = "maxPages", required = false, defaultValue = "1") Integer maxPages) {
-            ProjectParse result;
-            List<IssueParse> issueParses = new ArrayList<>();
-            List<CommitParse> commitParses = new ArrayList<>();
+                                               @RequestParam(name = "sinceCommits", required = false, defaultValue = "2") Integer sinceCommits,
+                                               @RequestParam(name = "sinceIssues", required = false, defaultValue = "20") Integer sinceIssues,
+                                               @RequestParam(name = "maxPages", required = false, defaultValue = "2") Integer maxPages) {
+        ProjectParse result;
+        List<IssueParse> issueParses = new ArrayList<>();
+        List<CommitParse> commitParses = new ArrayList<>();
 
-            Project project = projectService.getProjectByUserRepo(owner, repoName);
-            List<Issue> issueList = issueService.findAllIssueByOwnerAndRepository(owner, repoName, sinceIssues, maxPages);
-            List<Commit> commitList = commitService.findAllCommit(owner, repoName, sinceCommits, maxPages);
-            for (int i = 0; i < issueList.size(); i++) {
-                String authorIssueUsername = issueList.get(i).getAuthor().getUsername();
-                Integer upvotes = issueService.findUpvotesByIssue(owner, repoName, issueList.get(i).getNumber());
-                Integer downvotes = issueService.findDownvotesByIssue(owner, repoName, issueList.get(i).getNumber());
-                UserParse assignee = null;
-                if (issueList.get(i).getAssignee() != null) {
-                    String assigneeIssueUsername = issueList.get(i).getAssignee().getUsername();
-                    assignee = new UserParse(userService.getUserByUsername(assigneeIssueUsername));
-                }
-                UserParse author = new UserParse(userService.getUserByUsername(authorIssueUsername));
-                List<Comment> commentList = commentService.findAllComment(owner, repoName, issueList.get(i).getNumber());
-                List<CommentParse> commentParses = new ArrayList<>();
-                for (int j = 0; j < commentList.size(); j++) {
-                    String authorComment = commentList.get(j).getAuthor().getUsername();
-                    UserParse commentAuthor = new UserParse(userService.getUserByUsername(authorComment));
-                    CommentParse commentParse = new CommentParse(commentList.get(j),commentAuthor);
-                    commentParses.add(commentParse);
-                }
-
-                IssueParse issueParse = new IssueParse(issueList.get(i), author, assignee, commentParses, upvotes, downvotes);
-                issueParses.add(issueParse);
+        Project project = projectService.getProjectByUserRepo(owner, repoName);
+        List<Issue> issueList = issueService.findAllIssueByOwnerAndRepository(owner, repoName, sinceIssues, maxPages);
+        List<Commit> commitList = commitService.findAllCommit(owner, repoName, sinceCommits, maxPages);
+        for (int i = 0; i < issueList.size(); i++) {
+            String authorIssueUsername = issueList.get(i).getAuthor().getUsername();
+            Integer upvotes = issueService.findUpvotesByIssue(owner, repoName, issueList.get(i).getNumber());
+            Integer downvotes = issueService.findDownvotesByIssue(owner, repoName, issueList.get(i).getNumber());
+            UserParse assignee = null;
+            if (issueList.get(i).getAssignee() != null) {
+                String assigneeIssueUsername = issueList.get(i).getAssignee().getUsername();
+                assignee = new UserParse(userService.getUserByUsername(assigneeIssueUsername));
             }
-            for (int i = 0; i < commitList.size(); i++) {
-                CommitParse commitParse = null;
-                if(commitList.get(i).getCommit().getMessage() != null){
-                    String[] titleAndMessage = commitList.get(i).getCommit().getMessage().split("/n/n");
-                    if (titleAndMessage.length == 1){
-                        commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(),commitList.get(i),commitList.get(i).getCommit().getCommitter(),titleAndMessage[0],null);
-                    }else {
-                        commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(), commitList.get(i), commitList.get(i).getCommit().getCommitter(), titleAndMessage[0], titleAndMessage[1]);
-                    }
+            UserParse author = new UserParse(userService.getUserByUsername(authorIssueUsername));
+            List<Comment> commentList = commentService.findAllComment(owner, repoName, issueList.get(i).getNumber());
+            List<CommentParse> commentParses = new ArrayList<>();
+            for (int j = 0; j < commentList.size(); j++) {
+                String authorComment = commentList.get(j).getAuthor().getUsername();
+                UserParse commentAuthor = new UserParse(userService.getUserByUsername(authorComment));
+                CommentParse commentParse = new CommentParse(commentList.get(j),commentAuthor);
+                commentParses.add(commentParse);
+            }
+
+            IssueParse issueParse = new IssueParse(issueList.get(i), author, assignee, commentParses, upvotes, downvotes);
+            issueParses.add(issueParse);
+        }
+        for (int i = 0; i < commitList.size(); i++) {
+            CommitParse commitParse = null;
+            if(commitList.get(i).getCommit().getMessage() != null){
+                String[] titleAndMessage = commitList.get(i).getCommit().getMessage().split("\n\n");     //podria separarse con \n pero en la practica nos indicaron de hacerlo con \n\n
+                if (titleAndMessage.length == 1){
+                    commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(),commitList.get(i),commitList.get(i).getCommit().getCommitter(),titleAndMessage[0],null);
                 }else {
-                    commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(), commitList.get(i), commitList.get(i).getCommit().getCommitter(),null,null);
+                    commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(), commitList.get(i), commitList.get(i).getCommit().getCommitter(), titleAndMessage[0], titleAndMessage[1]);
                 }
-                commitParses.add(commitParse);
+            }else {
+                commitParse = new CommitParse(commitList.get(i).getCommit().getAuthor(), commitList.get(i), commitList.get(i).getCommit().getCommitter(),null,null);
             }
-            result =  new ProjectParse(project,commitParses,issueParses);
+            commitParses.add(commitParse);
+        }
+        result =  new ProjectParse(project,commitParses,issueParses);
+
             return restTemplate.postForObject("http://localhost:8080/gitminer/projects", result, ProjectParse.class);
         }
 
